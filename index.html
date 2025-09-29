@@ -1,50 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <!-- Meta básicas -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ProtoSeed — Prototipado ágil en agrotech | Presencia en Fruit Attraction (IFEMA)</title>
-  <meta name="description" content="ProtoSeed: prototipado ágil (MVP/PoC) para agrotech. Presencia en Fruit Attraction (IFEMA). De la idea a la germinación en tiempo récord." />
+  <title id="meta-title">ProtoSeed — Prototipado ágil en agrotech | Presencia en Fruit Attraction (IFEMA)</title>
+  <meta id="meta-description" name="description" content="ProtoSeed: prototipado ágil (MVP/PoC) para agrotech. Presencia en Fruit Attraction (IFEMA). De la idea a la germinación en tiempo récord." />
   <!-- Theme color (se actualiza dinámicamente también) -->
   <meta name="theme-color" content="#0a0a0a" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="ProtoSeed — Prototipado ágil en agrotech" />
-  <meta property="og:description" content="De la idea a la germinación en tiempo récord. Presencia en Fruit Attraction (IFEMA)." />
-  <meta property="og:image" content='data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="%23111"/><g transform="translate(100,120)"><text x="0" y="0" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="64" fill="%23A7F3D0">ProtoSeed</text><text x="0" y="84" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="40" fill="%23FFFFFF">Nosotros plantamos el código, tú cosechas el éxito.</text><g transform="translate(0,140)"><circle cx="60" cy="60" r="56" fill="%2316A34A"/><path d="M60 35c14 9 22 22 22 34 0 12-8 23-22 28-14-5-22-16-22-28 0-12 8-25 22-34z" fill="%23fff"/></g></g></svg>' />
+  <meta id="og-title" property="og:title" content="ProtoSeed — Prototipado ágil en agrotech" />
+  <meta id="og-description" property="og:description" content="De la idea a la germinación en tiempo récord. Presencia en Fruit Attraction (IFEMA)." />
+  <meta id="og-image" property="og:image" content='data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="%23111"/><g transform="translate(100,120)"><text x="0" y="0" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="64" fill="%23A7F3D0">ProtoSeed</text><text x="0" y="84" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="40" fill="%23FFFFFF">Nosotros plantamos el código, tú cosechas el éxito.</text><g transform="translate(0,140)"><circle cx="60" cy="60" r="56" fill="%2316A34A"/><path d="M60 35c14 9 22 22 22 34 0 12-8 23-22 28-14-5-22-16-22-28 0-12 8-25 22-34z" fill="%23fff"/></g></g></svg>' />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Favicon (emoji en data URI) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%2772%27 font-size=%2780%27%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E" />
 
   <!-- ====== PRE-APLICACIÓN DE TEMA (evita FOUC) ====== -->
-<script>
-  (function () {
-    try {
-      // Si el usuario ya eligió tema, respétalo; si no, usa "dark"
-      var saved = localStorage.getItem('ps-theme'); // 'light' | 'dark' | null
-      var theme = saved || 'dark';
-
-      if (theme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-      } else {
-        document.documentElement.removeAttribute('data-theme'); // ausencia = dark (por tus CSS vars)
-      }
-
-      // Ajusta la barra del navegador en móvil
-      var meta = document.querySelector('meta[name="theme-color"]');
-      if (!meta) {
-        meta = document.createElement('meta');
-        meta.name = 'theme-color';
-        document.head.appendChild(meta);
-      }
-      meta.setAttribute('content', theme === 'light' ? '#ffffff' : '#0a0a0a');
-    } catch (e) {}
-  })();
-</script>
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('ps-theme'); // 'light' | 'dark' | null
+        var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        var theme = saved || (prefersLight ? 'light' : 'dark');
+        if (theme === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'light' ? '#ffffff' : '#0a0a0a');
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- TailwindCSS vía CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -64,7 +55,6 @@
       --text-muted: #737373;
       --header-bg: rgba(10, 10, 10, 0.6);
     }
-    
     [data-theme="light"] {
       --bg-primary: #ffffff;
       --bg-secondary: #f5f5f5;
@@ -76,13 +66,11 @@
       --text-muted: #737373;
       --header-bg: rgba(255, 255, 255, 0.8);
     }
-
     body {
       background-color: var(--bg-primary);
       color: var(--text-primary);
       transition: background-color 0.3s ease, color 0.3s ease;
     }
-
     .bg-theme-primary { background-color: var(--bg-primary); }
     .bg-theme-secondary { background-color: var(--bg-secondary); }
     .bg-theme-card { background-color: var(--bg-card); }
@@ -91,11 +79,7 @@
     .text-theme-primary { color: var(--text-primary); }
     .text-theme-secondary { color: var(--text-secondary); }
     .text-theme-muted { color: var(--text-muted); }
-    
-    /* Foco visible accesible */
     .focus-ring:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-    
-    /* Animación sutil */
     @keyframes grow {
       0% { transform: scale(0.98) translateY(2px); opacity: .92; }
       60% { transform: scale(1.02) translateY(0); opacity: 1; }
@@ -105,8 +89,6 @@
     @media (prefers-reduced-motion: reduce) {
       .sprout-animate, .transition-all, .duration-200 { animation: none !important; transition: none !important; }
     }
-
-    /* Hero con gradientes sutiles */
     .hero-bg:before{
       content:"";
       position:absolute; inset:-10%;
@@ -117,24 +99,18 @@
       pointer-events:none;
       filter: blur(40px);
     }
-
-    /* Profundidad elegante para header y cards */
     .header-blur { 
       backdrop-filter: saturate(140%) blur(10px); 
       background: var(--header-bg);
       transition: background 0.3s ease;
     }
-    
     .card { 
       box-shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 10px 30px rgba(0,0,0,.15);
       transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
-
     [data-theme="light"] .card {
       box-shadow: 0 1px 0 rgba(0,0,0,.03) inset, 0 10px 30px rgba(0,0,0,.05);
     }
-
-    /* Skeleton shimmer para el iframe */
     .skeleton {
       position: relative; overflow: hidden;
       background: var(--bg-secondary);
@@ -149,38 +125,28 @@
       background: linear-gradient(90deg, transparent, rgba(0,0,0,.06), transparent);
     }
     @keyframes shimmer { 100% { transform: translateX(100%); } }
-
-    /* CTA fijo en móvil */
     .dock-cta { position: fixed; left: 0; right: 0; bottom: .75rem; z-index: 40; }
     @media (min-width: 640px){ .dock-cta { display:none; } }
-
-    /* Theme toggle button */
-    .theme-toggle {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 0.5rem;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
+    .toggle-btn {
+      width: 2.5rem; height: 2.5rem; border-radius: 0.5rem;
+      border: 1px solid var(--border); background: var(--bg-card);
+      display:flex; align-items:center; justify-content:center; cursor:pointer;
+      transition: all .2s ease;
     }
-    .theme-toggle:hover {
-      background: var(--bg-card-hover);
-    }
-    .theme-icon {
-      width: 1.25rem;
-      height: 1.25rem;
-      transition: transform 0.3s ease;
+    .toggle-btn:hover{ background: var(--bg-card-hover); }
+    .theme-icon { width: 1.25rem; height: 1.25rem; transition: transform .3s ease; }
+    .lang-pill {
+      min-width: 2.5rem; height: 2.5rem; border-radius: .5rem; padding: 0 .5rem;
+      border: 1px solid var(--border); background: var(--bg-card);
+      display:flex; align-items:center; justify-content:center; font-weight:600;
+      font-size:.9rem; letter-spacing:.02em;
     }
   </style>
 </head>
 
 <body>
   <!-- Enlace "Saltar al contenido" para accesibilidad -->
-  <a href="#contenido" class="sr-only focus:not-sr-only focus-ring focus:bg-theme-card px-4 py-2 absolute left-4 top-4 rounded-lg">Saltar al contenido</a>
+  <a id="skip-link" href="#contenido" class="sr-only focus:not-sr-only focus-ring focus:bg-theme-card px-4 py-2 absolute left-4 top-4 rounded-lg" data-i18n="skip_to_content">Saltar al contenido</a>
 
   <!-- Header / Navbar -->
   <header class="sticky top-0 z-30 border-b border-theme header-blur">
@@ -189,14 +155,19 @@
         <span class="text-emerald-300">Proto</span><span class="text-emerald-500">Seed</span>
       </a>
 
-      <nav aria-label="Principal" class="flex items-center gap-4">
+      <nav aria-label="Principal" class="flex items-center gap-3 sm:gap-4">
         <ul class="hidden sm:flex items-center gap-6 text-sm">
-          <li><a class="focus-ring hover:underline" href="#proceso">Proceso</a></li>
-          <li><a class="focus-ring hover:underline" href="#fruit">Fruit Attraction</a></li>
+          <li><a class="focus-ring hover:underline" href="#proceso" data-i18n="nav_process">Proceso</a></li>
+          <li><a class="focus-ring hover:underline" href="#fruit" data-i18n="nav_fruit">Fruit Attraction</a></li>
         </ul>
 
+        <!-- Language Toggle -->
+        <button id="langToggle" class="lang-pill focus-ring" aria-label="Switch language" aria-live="polite" title="Switch language">
+          <span id="langLabel">EN</span>
+        </button>
+
         <!-- Theme Toggle Button -->
-        <button id="themeToggle" class="theme-toggle focus-ring" aria-label="Cambiar tema" aria-pressed="false">
+        <button id="themeToggle" class="toggle-btn focus-ring" aria-label="Cambiar tema" aria-pressed="false">
           <svg id="sunIcon" class="theme-icon" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-hidden="true">
             <circle cx="12" cy="12" r="5"/>
             <line x1="12" y1="1" x2="12" y2="3"/>
@@ -213,8 +184,8 @@
           </svg>
         </button>
 
-        <a href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
-           class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-lg font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 focus-ring text-sm">
+        <a id="contactLinkDesktop" href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
+           class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-lg font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 focus-ring text-sm" data-i18n="contact">
           Contacto
           <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </a>
@@ -222,13 +193,13 @@
         <!-- Menú móvil sin JS (details/summary) -->
         <details class="sm:hidden">
           <summary class="list-none focus-ring px-2 py-1 rounded-lg border border-theme">
-            <span class="sr-only">Abrir menú</span>
+            <span class="sr-only" data-i18n="open_menu">Abrir menú</span>
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </summary>
           <ul class="absolute right-4 mt-2 w-48 rounded-xl border border-theme bg-theme-card p-2 text-sm shadow-xl">
-            <li><a class="block px-3 py-2 rounded-lg hover:bg-theme-card-hover focus-ring" href="#proceso">Proceso</a></li>
-            <li><a class="block px-3 py-2 rounded-lg hover:bg-theme-card-hover focus-ring" href="#fruit">Fruit Attraction</a></li>
-            <li><a class="block px-3 py-2 rounded-lg hover:bg-theme-card-hover focus-ring" href="#contacto">Contacto</a></li>
+            <li><a class="block px-3 py-2 rounded-lg hover:bg-theme-card-hover focus-ring" href="#proceso" data-i18n="nav_process">Proceso</a></li>
+            <li><a class="block px-3 py-2 rounded-lg hover:bg-theme-card-hover focus-ring" href="#fruit" data-i18n="nav_fruit">Fruit Attraction</a></li>
+            <li><a class="block px-3 py-2 rounded-lg hover:bg-theme-card-hover focus-ring" href="#contacto" data-i18n="nav_contact">Contacto</a></li>
           </ul>
         </details>
       </nav>
@@ -241,24 +212,25 @@
       <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center py-16 sm:py-24 sprout-animate">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-700/40 bg-emerald-600/10 text-emerald-300 text-xs font-medium">
           <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-          Presencia en Fruit Attraction · IFEMA Madrid
+          <span data-i18n="badge_fruit">Presencia en Fruit Attraction · IFEMA Madrid</span>
         </div>
 
-        <h1 class="mt-4 text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight">
+        <h1 class="mt-4 text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight" data-i18n="hero_title">
           Plantamos el <span class="text-emerald-400">código</span>, tú cosechas el <span class="text-emerald-300">éxito</span>.
         </h1>
 
-        <p class="mt-5 text-base sm:text-lg text-theme-secondary max-w-2xl mx-auto">
+        <p class="mt-5 text-base sm:text-lg text-theme-secondary max-w-2xl mx-auto" data-i18n="hero_subtitle">
           De la idea a la germinación en tiempo récord. Prototipado ágil (MVP/PoC) especializado en agrotech.
         </p>
 
         <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
-             class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 transition-all duration-200">
+          <a id="ctaMailHero"
+             href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
+             class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 transition-all duration-200" data-i18n="cta_prototype">
             Prototipa tu idea ahora
             <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </a>
-          <a href="#fruit" class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold border border-theme hover:bg-theme-card transition-all duration-200">
+          <a href="#fruit" class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold border border-theme hover:bg-theme-card transition-all duration-200" data-i18n="cta_view_dashboard">
             Ver nuestro dashboard en vivo
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3l-9 9M5 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </a>
@@ -268,8 +240,9 @@
 
     <!-- CTA dock (móvil) -->
     <div class="dock-cta px-4">
-      <a href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
-         class="block w-full text-center px-5 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 shadow-lg focus-ring">
+      <a id="ctaMailDock"
+         href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
+         class="block w-full text-center px-5 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 shadow-lg focus-ring" data-i18n="cta_prototype">
         Prototipa tu idea ahora
       </a>
     </div>
@@ -277,8 +250,8 @@
     <!-- Proceso -->
     <section id="proceso" aria-labelledby="proceso-titulo" class="py-12 sm:py-16 border-t border-theme">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="proceso-titulo" class="text-2xl sm:text-3xl font-bold">Proceso: de semilla a brote</h2>
-        <p class="mt-3 text-theme-secondary max-w-3xl">
+        <h2 id="proceso-titulo" class="text-2xl sm:text-3xl font-bold" data-i18n="process_title">Proceso: de semilla a brote</h2>
+        <p class="mt-3 text-theme-secondary max-w-3xl" data-i18n="process_intro">
           Convertimos hipótesis en aprendizaje validado con un MVP/PoC funcional y medible. Cuatro pasos claros para reducir riesgo, tiempo y coste.
         </p>
 
@@ -286,33 +259,33 @@
           <article class="rounded-2xl border border-theme p-6 bg-theme-card bg-theme-card-hover transition-all duration-200 card">
             <div class="flex items-center gap-3">
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4c4 2.5 6 6.3 6 9 0 2.7-2 5.1-6 6.4C8 18.1 6 15.7 6 13c0-2.7 2-6.5 6-9z" fill="currentColor"/></svg>
-              <h3 class="font-semibold">1. Semilla</h3>
+              <h3 class="font-semibold" data-i18n="step1_title">1. Semilla</h3>
             </div>
-            <p class="mt-3 text-sm text-theme-secondary">Evaluación de oportunidad, riesgos y métricas de éxito.</p>
+            <p class="mt-3 text-sm text-theme-secondary" data-i18n="step1_desc">Evaluación de oportunidad, riesgos y métricas de éxito.</p>
           </article>
 
           <article class="rounded-2xl border border-theme p-6 bg-theme-card bg-theme-card-hover transition-all duration-200 card">
             <div class="flex items-center gap-3">
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17h18v2H3zM4 13h16l-3-4-5 3-3-2-5 3z" fill="currentColor"/></svg>
-              <h3 class="font-semibold">2. Terreno</h3>
+              <h3 class="font-semibold" data-i18n="step2_title">2. Terreno</h3>
             </div>
-            <p class="mt-3 text-sm text-theme-secondary">Arquitectura UX/tech, backlog mínimo y plan de sprints.</p>
+            <p class="mt-3 text-sm text-theme-secondary" data-i18n="step2_desc">Arquitectura UX/tech, backlog mínimo y plan de sprints.</p>
           </article>
 
           <article class="rounded-2xl border border-theme p-6 bg-theme-card bg-theme-card-hover transition-all duration-200 card">
             <div class="flex items-center gap-3">
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l4 4-7 7-2 1 1-2 7-7zM5 19a3 3 0 106 0c0 1.657-3 3-3 3s-3-1.343-3-3z" fill="currentColor"/></svg>
-              <h3 class="font-semibold">3. Riego</h3>
+              <h3 class="font-semibold" data-i18n="step3_title">3. Riego</h3>
             </div>
-            <p class="mt-3 text-sm text-theme-secondary">Codificamos el MVP/PoC con métricas y pruebas. Iteración rápida.</p>
+            <p class="mt-3 text-sm text-theme-secondary" data-i18n="step3_desc">Codificamos el MVP/PoC con métricas y pruebas. Iteración rápida.</p>
           </article>
 
           <article class="rounded-2xl border border-theme p-6 bg-theme-card bg-theme-card-hover transition-all duration-200 card">
             <div class="flex items-center gap-3">
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c0-6 4-10 4-10s4 4 4 10h-8zM12 20c0-6-4-10-4-10S4 14 4 20h8z" fill="currentColor"/></svg>
-              <h3 class="font-semibold">4. Brote</h3>
+              <h3 class="font-semibold" data-i18n="step4_title">4. Brote</h3>
             </div>
-            <p class="mt-3 text-sm text-theme-secondary">Producto funcional, documentación y handover para escalar.</p>
+            <p class="mt-3 text-sm text-theme-secondary" data-i18n="step4_desc">Producto funcional, documentación y handover para escalar.</p>
           </article>
         </div>
       </div>
@@ -322,9 +295,9 @@
     <section id="fruit" aria-labelledby="showcase-titulo" class="py-12 sm:py-16 border-t border-theme">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between">
-          <h2 id="showcase-titulo" class="text-2xl sm:text-3xl font-bold">Showcase "Fruit Attraction"</h2>
+          <h2 id="showcase-titulo" class="text-2xl sm:text-3xl font-bold" data-i18n="showcase_title">Showcase "Fruit Attraction"</h2>
           <span class="hidden sm:inline-flex items-center gap-2 text-xs px-2 py-1 rounded-lg bg-emerald-600/15 text-emerald-300 border border-emerald-700/40">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> En vivo
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> <span data-i18n="live">En vivo</span>
           </span>
         </div>
 
@@ -332,16 +305,16 @@
           <div class="flex items-center justify-between gap-3">
             <div class="flex items-center gap-3">
               <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4V8H4v12zm6 0h4V4h-4v16zm6 0h4v-9h-4v9z" fill="currentColor"/></svg>
-              <h3 class="font-semibold">Análisis de Precios Agrícolas</h3>
+              <h3 class="font-semibold" data-i18n="dashboard_title">Análisis de Precios Agrícolas</h3>
             </div>
-            <a href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener"
-               class="focus-ring inline-flex items-center gap-2 px-3 py-2 rounded-lg font-medium border border-theme hover:bg-theme-card text-xs">
+            <a id="dashboardLink" href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener"
+               class="focus-ring inline-flex items-center gap-2 px-3 py-2 rounded-lg font-medium border border-theme hover:bg-theme-card text-xs" data-i18n="open_new_window">
               Abrir en ventana nueva
               <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3l-9 9M5 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </a>
           </div>
 
-          <p class="mt-2 text-sm text-theme-secondary">
+          <p class="mt-2 text-sm text-theme-secondary" data-i18n="dashboard_desc">
             Análisis interactivo para productores agrícolas: explora tendencias, compara cultivos y decide con datos.
           </p>
 
@@ -349,6 +322,7 @@
           <div class="mt-5 relative w-full" style="aspect-ratio:16/9;">
             <div id="panel-skeleton" class="skeleton w-full h-full rounded-xl"></div>
             <iframe
+              id="dashboardFrame"
               title="Análisis de Precios Agrícolas — ProtoSeed"
               src="https://agro-agents-demo.onrender.com/es"
               class="absolute inset-0 w-full h-full rounded-xl border border-theme"
@@ -359,8 +333,8 @@
           </div>
 
           <p class="mt-3 text-xs text-theme-muted">
-            Si no ves el panel, accede directamente:
-            <a class="focus-ring underline" href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener">agro-agents-demo.onrender.com/es</a>
+            <span data-i18n="if_no_panel">Si no ves el panel, accede directamente:</span>
+            <a id="dashboardDirect" class="focus-ring underline" href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener">agro-agents-demo.onrender.com/es</a>
           </p>
         </article>
       </div>
@@ -369,8 +343,8 @@
     <!-- Sobre ProtoSeed -->
     <section aria-labelledby="sobre" class="py-12 sm:py-16 border-t border-theme">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="sobre" class="text-2xl sm:text-3xl font-bold">Sobre ProtoSeed</h2>
-        <p class="mt-3 text-theme-secondary">
+        <h2 id="sobre" class="text-2xl sm:text-3xl font-bold" data-i18n="about_title">Sobre ProtoSeed</h2>
+        <p class="mt-3 text-theme-secondary" data-i18n="about_body">
           Somos un equipo ágil enfocado en etapas tempranas. Convertimos ideas en prototipos funcionales que validan valor y viabilidad técnica.
           Trabajamos con ciclos cortos, métricas desde el día uno y documentación clara para facilitar la transferencia al equipo del cliente.
           Entregamos código, pruebas, tableros de seguimiento y un plan de siguientes pasos para escalar con seguridad.
@@ -384,20 +358,20 @@
         <h2 id="faq" class="text-2xl sm:text-3xl font-bold">FAQ</h2>
         <dl class="mt-6 space-y-6">
           <div>
-            <dt class="font-semibold">¿Cuáles son los plazos típicos?</dt>
-            <dd class="text-theme-secondary">Los MVP/PoC se planifican en sprints cortos. Acordamos un alcance mínimo valioso y fechas de demo para iterar con evidencia.</dd>
+            <dt class="font-semibold" data-i18n="faq_1_q">¿Cuáles son los plazos típicos?</dt>
+            <dd class="text-theme-secondary" data-i18n="faq_1_a">Los MVP/PoC se planifican en sprints cortos. Acordamos un alcance mínimo valioso y fechas de demo para iterar con evidencia.</dd>
           </div>
           <div>
-            <dt class="font-semibold">¿Qué entregables recibo?</dt>
-            <dd class="text-theme-secondary">Código en repositorio, documentación de arquitectura/decisiones, guía de despliegue, checklist de pruebas y tablero de métricas.</dd>
+            <dt class="font-semibold" data-i18n="faq_2_q">¿Qué entregables recibo?</dt>
+            <dd class="text-theme-secondary" data-i18n="faq_2_a">Código en repositorio, documentación de arquitectura/decisiones, guía de despliegue, checklist de pruebas y tablero de métricas.</dd>
           </div>
           <div>
-            <dt class="font-semibold">¿De quién es la propiedad intelectual?</dt>
-            <dd class="text-theme-secondary">La PI es del cliente. ProtoSeed realiza la cesión completa del trabajo y sus artefactos.</dd>
+            <dt class="font-semibold" data-i18n="faq_3_q">¿De quién es la propiedad intelectual?</dt>
+            <dd class="text-theme-secondary" data-i18n="faq_3_a">La PI es del cliente. ProtoSeed realiza la cesión completa del trabajo y sus artefactos.</dd>
           </div>
           <div>
-            <dt class="font-semibold">¿Qué tecnologías utilizáis?</dt>
-            <dd class="text-theme-secondary">Stack pragmático y orientado a objetivos: web/backend, datos, IoT, visión y asistentes con IA cuando aportan ROI, siempre con buenas prácticas de seguridad.</dd>
+            <dt class="font-semibold" data-i18n="faq_4_q">¿Qué tecnologías utilizáis?</dt>
+            <dd class="text-theme-secondary" data-i18n="faq_4_a">Stack pragmático y orientado a objetivos: web/backend, datos, IoT, visión y asistentes con IA cuando aportan ROI, siempre con buenas prácticas de seguridad.</dd>
           </div>
         </dl>
       </div>
@@ -406,13 +380,13 @@
     <!-- CTA Final -->
     <section id="contacto" class="py-12 sm:py-16 border-t border-theme text-center">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl sm:text-3xl font-bold">¿Listo para plantar tu idea?</h2>
-        <p class="mt-3 text-theme-secondary">Cuéntanos el problema, la oportunidad y el éxito esperado. Diseñamos el prototipo juntos.</p>
+        <h2 class="text-2xl sm:text-3xl font-bold" data-i18n="final_cta_title">¿Listo para plantar tu idea?</h2>
+        <p class="mt-3 text-theme-secondary" data-i18n="final_cta_body">Cuéntanos el problema, la oportunidad y el éxito esperado. Diseñamos el prototipo juntos.</p>
         <div class="mt-6 flex justify-center">
-          <a
+          <a id="ctaMailFinal"
             href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
             class="focus-ring inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700"
-            aria-label="Abrir correo para iniciar prototipado">
+            aria-label="Abrir correo para iniciar prototipado" data-i18n="cta_prototype">
             Prototipa tu idea ahora
             <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
               <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -428,7 +402,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div>
         <p class="font-semibold"><span class="text-emerald-300">Proto</span><span class="text-emerald-500">Seed</span></p>
-        <p class="text-sm text-theme-muted mt-1">"Nosotros plantamos el código, tú cosechas el éxito."</p>
+        <p class="text-sm text-theme-muted mt-1" data-i18n="tagline">"Nosotros plantamos el código, tú cosechas el éxito."</p>
       </div>
       <div class="text-sm">
         <a class="focus-ring hover:underline" href="mailto:info@proto-seed.com">info@proto-seed.com</a>
@@ -436,8 +410,214 @@
     </div>
   </footer>
 
-  <!-- ====== LÓGICA DE TEMA (toggle + persistencia + iconos + meta) ====== -->
+  <!-- ====== LÓGICA DE TEMA + IDIOMA ====== -->
   <script>
+    // --- Language strings (ES & EN) ---
+    const STR = {
+      es: {
+        meta_title: "ProtoSeed — Prototipado ágil en agrotech | Presencia en Fruit Attraction (IFEMA)",
+        meta_desc: "ProtoSeed: prototipado ágil (MVP/PoC) para agrotech. Presencia en Fruit Attraction (IFEMA). De la idea a la germinación en tiempo récord.",
+        og_title: "ProtoSeed — Prototipado ágil en agrotech",
+        og_desc: "De la idea a la germinación en tiempo récord. Presencia en Fruit Attraction (IFEMA).",
+        og_svg_text: "Nosotros plantamos el código, tú cosechas el éxito.",
+        skip_to_content: "Saltar al contenido",
+        nav_process: "Proceso",
+        nav_fruit: "Fruit Attraction",
+        nav_contact: "Contacto",
+        badge_fruit: "Presencia en Fruit Attraction · IFEMA Madrid",
+        hero_title: 'Plantamos el <span class="text-emerald-400">código</span>, tú cosechas el <span class="text-emerald-300">éxito</span>.',
+        hero_subtitle: "De la idea a la germinación en tiempo récord. Prototipado ágil (MVP/PoC) especializado en agrotech.",
+        cta_prototype: "Prototipa tu idea ahora",
+        cta_view_dashboard: "Ver nuestro dashboard en vivo",
+        open_menu: "Abrir menú",
+        process_title: "Proceso: de semilla a brote",
+        process_intro: "Convertimos hipótesis en aprendizaje validado con un MVP/PoC funcional y medible. Cuatro pasos claros para reducir riesgo, tiempo y coste.",
+        step1_title: "1. Semilla",
+        step1_desc: "Evaluación de oportunidad, riesgos y métricas de éxito.",
+        step2_title: "2. Terreno",
+        step2_desc: "Arquitectura UX/tech, backlog mínimo y plan de sprints.",
+        step3_title: "3. Riego",
+        step3_desc: "Codificamos el MVP/PoC con métricas y pruebas. Iteración rápida.",
+        step4_title: "4. Brote",
+        step4_desc: "Producto funcional, documentación y handover para escalar.",
+        showcase_title: 'Showcase "Fruit Attraction"',
+        live: "En vivo",
+        dashboard_title: "Análisis de Precios Agrícolas",
+        dashboard_desc: "Análisis interactivo para productores agrícolas: explora tendencias, compara cultivos y decide con datos.",
+        open_new_window: "Abrir en ventana nueva",
+        if_no_panel: "Si no ves el panel, accede directamente:",
+        about_title: "Sobre ProtoSeed",
+        about_body: "Somos un equipo ágil enfocado en etapas tempranas. Convertimos ideas en prototipos funcionales que validan valor y viabilidad técnica. Trabajamos con ciclos cortos, métricas desde el día uno y documentación clara para facilitar la transferencia al equipo del cliente. Entregamos código, pruebas, tableros de seguimiento y un plan de siguientes pasos para escalar con seguridad.",
+        faq_1_q: "¿Cuáles son los plazos típicos?",
+        faq_1_a: "Los MVP/PoC se planifican en sprints cortos. Acordamos un alcance mínimo valioso y fechas de demo para iterar con evidencia.",
+        faq_2_q: "¿Qué entregables recibo?",
+        faq_2_a: "Código en repositorio, documentación de arquitectura/decisiones, guía de despliegue, checklist de pruebas y tablero de métricas.",
+        faq_3_q: "¿De quién es la propiedad intelectual?",
+        faq_3_a: "La PI es del cliente. ProtoSeed realiza la cesión completa del trabajo y sus artefactos.",
+        faq_4_q: "¿Qué tecnologías utilizáis?",
+        faq_4_a: "Stack pragmático y orientado a objetivos: web/backend, datos, IoT, visión y asistentes con IA cuando aportan ROI, siempre con buenas prácticas de seguridad.",
+        final_cta_title: "¿Listo para plantar tu idea?",
+        final_cta_body: "Cuéntanos el problema, la oportunidad y el éxito esperado. Diseñamos el prototipo juntos.",
+        contact: "Contacto",
+        tagline: "\"Nosotros plantamos el código, tú cosechas el éxito.\"",
+        mail_subject: "Quiero prototipar mi idea – ProtoSeed",
+        dash_path: "es",
+        dash_title: "Análisis de Precios Agrícolas — ProtoSeed"
+      },
+      en: {
+        meta_title: "ProtoSeed — Agile prototyping in agrotech | Presence at Fruit Attraction (IFEMA)",
+        meta_desc: "ProtoSeed: agile prototyping (MVP/PoC) for agrotech. Presence at Fruit Attraction (IFEMA). From idea to germination, fast.",
+        og_title: "ProtoSeed — Agile prototyping in agrotech",
+        og_desc: "From idea to germination, fast. Presence at Fruit Attraction (IFEMA).",
+        og_svg_text: "We plant the code, you harvest the success.",
+        skip_to_content: "Skip to content",
+        nav_process: "Process",
+        nav_fruit: "Fruit Attraction",
+        nav_contact: "Contact",
+        badge_fruit: "Presence at Fruit Attraction · IFEMA Madrid",
+        hero_title: 'We plant the <span class="text-emerald-400">code</span>, you harvest the <span class="text-emerald-300">success</span>.',
+        hero_subtitle: "From idea to germination in record time. Agile MVP/PoC prototyping specialized in agrotech.",
+        cta_prototype: "Prototype your idea now",
+        cta_view_dashboard: "View our live dashboard",
+        open_menu: "Open menu",
+        process_title: "Process: from seed to sprout",
+        process_intro: "We turn hypotheses into validated learning with a measurable, working MVP/PoC. Four clear steps to cut risk, time and cost.",
+        step1_title: "1. Seed",
+        step1_desc: "Opportunity, risks and success metrics assessment.",
+        step2_title: "2. Soil",
+        step2_desc: "UX/tech architecture, minimal backlog and sprint plan.",
+        step3_title: "3. Irrigation",
+        step3_desc: "We code the MVP/PoC with metrics and tests. Fast iteration.",
+        step4_title: "4. Sprout",
+        step4_desc: "Working product, documentation and handover to scale.",
+        showcase_title: 'Showcase "Fruit Attraction"',
+        live: "Live",
+        dashboard_title: "Agricultural Price Analytics",
+        dashboard_desc: "Interactive analytics for growers: explore trends, compare crops and decide with data.",
+        open_new_window: "Open in new window",
+        if_no_panel: "If you can’t see the panel, open directly:",
+        about_title: "About ProtoSeed",
+        about_body: "We’re an agile team focused on early stages. We turn ideas into working prototypes that validate value and technical feasibility. Short cycles, day-one metrics and clear docs to hand off to your team. We deliver code, tests, tracking boards and a next-steps plan to scale safely.",
+        faq_1_q: "What are typical timelines?",
+        faq_1_a: "MVPs/PoCs are planned in short sprints. We agree on a minimal valuable scope and demo dates to iterate with evidence.",
+        faq_2_q: "What deliverables do I get?",
+        faq_2_a: "Repo code, architecture/decision docs, deployment guide, test checklist and a metrics board.",
+        faq_3_q: "Who owns the IP?",
+        faq_3_a: "You do. ProtoSeed assigns full ownership of the work and artifacts to the client.",
+        faq_4_q: "Which technologies do you use?",
+        faq_4_a: "Pragmatic, goal-oriented stack: web/backend, data, IoT, vision, and AI assistants when they drive ROI—always with security best practices.",
+        final_cta_title: "Ready to plant your idea?",
+        final_cta_body: "Tell us the problem, the opportunity and what success looks like. We’ll design the prototype together.",
+        contact: "Contact",
+        tagline: "\"We plant the code, you harvest the success.\"",
+        mail_subject: "I want to prototype my idea – ProtoSeed",
+        dash_path: "en",
+        dash_title: "Agricultural Price Analytics — ProtoSeed"
+      }
+    };
+
+    // Helper to build data-URI OG image with language text
+    function ogSVG(text) {
+      const esc = encodeURIComponent;
+      const svg = `<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#111"/><g transform="translate(100,120)"><text x="0" y="0" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="64" fill="#A7F3D0">ProtoSeed</text><text x="0" y="84" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="40" fill="#FFFFFF">${text}</text><g transform="translate(0,140)"><circle cx="60" cy="60" r="56" fill="#16A34A"/><path d="M60 35c14 9 22 22 22 34 0 12-8 23-22 28-14-5-22-16-22-28 0-12 8-25 22-34z" fill="#fff"/></g></g></svg>`;
+      return `data:image/svg+xml;utf8,${esc(svg)}`;
+    }
+
+    // --- Language detection: ?lang=en|es > localStorage > navigator ---
+    function detectLang() {
+      const params = new URLSearchParams(location.search);
+      const ql = params.get('lang');
+      if (ql && (ql === 'es' || ql === 'en')) return ql;
+      const saved = localStorage.getItem('ps-lang');
+      if (saved) return saved;
+      const nav = (navigator.language || 'es').toLowerCase();
+      return nav.startsWith('es') ? 'es' : 'en';
+    }
+
+    function setQueryLang(lang) {
+      try {
+        const url = new URL(location.href);
+        url.searchParams.set('lang', lang);
+        history.replaceState(null, '', url.toString());
+      } catch(e) {}
+    }
+
+    function mailtoWithSubject(subject) {
+      const s = encodeURIComponent(subject);
+      return `mailto:info@proto-seed.com?subject=${s}`;
+    }
+
+    function applyLang(lang) {
+      const t = STR[lang] || STR.es;
+      document.documentElement.lang = lang;
+
+      // Text nodes
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const val = t[key];
+        if (typeof val === 'string') {
+          // Allow minimal HTML in some strings (hero title with spans)
+          if (/<\s*\w+/.test(val)) {
+            el.innerHTML = val;
+          } else {
+            el.textContent = val;
+          }
+        }
+      });
+
+      // Title & meta
+      document.getElementById('meta-title').textContent = t.meta_title;
+      document.title = t.meta_title;
+      const md = document.getElementById('meta-description'); if (md) md.setAttribute('content', t.meta_desc);
+      const ogt = document.getElementById('og-title'); if (ogt) ogt.setAttribute('content', t.og_title);
+      const ogd = document.getElementById('og-description'); if (ogd) ogd.setAttribute('content', t.og_desc);
+      const ogi = document.getElementById('og-image'); if (ogi) ogi.setAttribute('content', ogSVG(t.og_svg_text));
+
+      // Mailto subjects
+      const mailHref = mailtoWithSubject(t.mail_subject);
+      ['ctaMailHero','ctaMailDock','ctaMailFinal','contactLinkDesktop'].forEach(id => {
+        const a = document.getElementById(id); if (a) a.setAttribute('href', mailHref);
+      });
+
+      // Dashboard paths & titles
+      const path = t.dash_path;
+      const frame = document.getElementById('dashboardFrame');
+      const link = document.getElementById('dashboardLink');
+      const direct = document.getElementById('dashboardDirect');
+      if (frame) {
+        frame.src = `https://agro-agents-demo.onrender.com/${path}`;
+        frame.title = t.dash_title;
+      }
+      if (link) link.href = `https://agro-agents-demo.onrender.com/${path}`;
+      if (direct) {
+        direct.href = `https://agro-agents-demo.onrender.com/${path}`;
+        direct.textContent = `agro-agents-demo.onrender.com/${path}`;
+      }
+
+      // Skip link label attribute for a11y
+      const skip = document.getElementById('skip-link');
+      if (skip) skip.setAttribute('aria-label', t.skip_to_content);
+
+      // Lang button label (shows the *other* language hint)
+      const langLabel = document.getElementById('langLabel');
+      if (langLabel) langLabel.textContent = lang === 'es' ? 'EN' : 'ES';
+
+      // Persist + reflect in URL
+      try { localStorage.setItem('ps-lang', lang); } catch(e) {}
+      setQueryLang(lang);
+    }
+
+    (function initLang() {
+      const current = detectLang();
+      applyLang(current);
+      const btn = document.getElementById('langToggle');
+      btn?.addEventListener('click', () => {
+        const next = (localStorage.getItem('ps-lang') || current) === 'es' ? 'en' : 'es';
+        applyLang(next);
+      });
+    })();
+
+    // ===== Theme toggle (existing) =====
     (function() {
       var btn = document.getElementById('themeToggle');
       var sun = document.getElementById('sunIcon');
@@ -462,17 +642,14 @@
           if (meta) meta.setAttribute('content', '#0a0a0a');
         }
       }
-      // Inicializa iconos según estado
       applyTheme(currentTheme());
 
-      // Toggle
       btn?.addEventListener('click', function () {
         var next = currentTheme() === 'light' ? 'dark' : 'light';
         applyTheme(next);
         try { localStorage.setItem('ps-theme', next); } catch(e) {}
       });
 
-      // Si el usuario cambia el tema del SO y no hay preferencia guardada, respeta el cambio
       var mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
       if (mq && typeof mq.addEventListener === 'function') {
         mq.addEventListener('change', function(e) {
@@ -487,4 +664,3 @@
   </script>
 </body>
 </html>
-
