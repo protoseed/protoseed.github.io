@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,27 +7,95 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ProtoSeed — Prototipado ágil en agrotech | Presencia en Fruit Attraction (IFEMA)</title>
   <meta name="description" content="ProtoSeed: prototipado ágil (MVP/PoC) para agrotech. Presencia en Fruit Attraction (IFEMA). De la idea a la germinación en tiempo récord." />
+  <!-- Theme color (se actualiza dinámicamente también) -->
+  <meta name="theme-color" content="#0a0a0a" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="ProtoSeed — Prototipado ágil en agrotech" />
   <meta property="og:description" content="De la idea a la germinación en tiempo récord. Presencia en Fruit Attraction (IFEMA)." />
-  <!-- Imagen OG ligera embebida como SVG data URI -->
   <meta property="og:image" content='data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="%23111"/><g transform="translate(100,120)"><text x="0" y="0" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="64" fill="%23A7F3D0">ProtoSeed</text><text x="0" y="84" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="40" fill="%23FFFFFF">Nosotros plantamos el código, tú cosechas el éxito.</text><g transform="translate(0,140)"><circle cx="60" cy="60" r="56" fill="%2316A34A"/><path d="M60 35c14 9 22 22 22 34 0 12-8 23-22 28-14-5-22-16-22-28 0-12 8-25 22-34z" fill="%23fff"/></g></g></svg>' />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Favicon (emoji en data URI) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%2772%27 font-size=%2780%27%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E" />
 
+  <!-- ====== PRE-APLICACIÓN DE TEMA (evita FOUC) ====== -->
+<script>
+  (function () {
+    try {
+      // Si el usuario ya eligió tema, respétalo; si no, usa "dark"
+      var saved = localStorage.getItem('ps-theme'); // 'light' | 'dark' | null
+      var theme = saved || 'dark';
+
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-theme'); // ausencia = dark (por tus CSS vars)
+      }
+
+      // Ajusta la barra del navegador en móvil
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.name = 'theme-color';
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', theme === 'light' ? '#ffffff' : '#0a0a0a');
+    } catch (e) {}
+  })();
+</script>
+
   <!-- TailwindCSS vía CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Estilos mínimos -->
   <style>
-    :root { --accent: #16a34a; } /* Verde acento */
+    :root { 
+      --accent: #16a34a;
+      /* Dark mode (default) */
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #171717;
+      --bg-card: rgba(23, 23, 23, 0.4);
+      --bg-card-hover: #171717;
+      --border: #262626;
+      --text-primary: #fafafa;
+      --text-secondary: #d4d4d4;
+      --text-muted: #737373;
+      --header-bg: rgba(10, 10, 10, 0.6);
+    }
+    
+    [data-theme="light"] {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f5f5f5;
+      --bg-card: rgba(245, 245, 245, 0.8);
+      --bg-card-hover: #f5f5f5;
+      --border: #e5e5e5;
+      --text-primary: #0a0a0a;
+      --text-secondary: #404040;
+      --text-muted: #737373;
+      --header-bg: rgba(255, 255, 255, 0.8);
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .bg-theme-primary { background-color: var(--bg-primary); }
+    .bg-theme-secondary { background-color: var(--bg-secondary); }
+    .bg-theme-card { background-color: var(--bg-card); }
+    .bg-theme-card-hover:hover { background-color: var(--bg-card-hover); }
+    .border-theme { border-color: var(--border); }
+    .text-theme-primary { color: var(--text-primary); }
+    .text-theme-secondary { color: var(--text-secondary); }
+    .text-theme-muted { color: var(--text-muted); }
+    
     /* Foco visible accesible */
     .focus-ring:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-    /* Animación sutil (si no se prefiere reducir movimiento) */
+    
+    /* Animación sutil */
     @keyframes grow {
       0% { transform: scale(0.98) translateY(2px); opacity: .92; }
       60% { transform: scale(1.02) translateY(0); opacity: 1; }
@@ -50,44 +119,99 @@
     }
 
     /* Profundidad elegante para header y cards */
-    .header-blur { backdrop-filter: saturate(140%) blur(10px); background: rgba(10,10,10,.6); }
-    .card { box-shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 10px 30px rgba(0,0,0,.35); }
+    .header-blur { 
+      backdrop-filter: saturate(140%) blur(10px); 
+      background: var(--header-bg);
+      transition: background 0.3s ease;
+    }
+    
+    .card { 
+      box-shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 10px 30px rgba(0,0,0,.15);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    [data-theme="light"] .card {
+      box-shadow: 0 1px 0 rgba(0,0,0,.03) inset, 0 10px 30px rgba(0,0,0,.05);
+    }
 
     /* Skeleton shimmer para el iframe */
     .skeleton {
       position: relative; overflow: hidden;
-      background: linear-gradient(0deg, #0a0a0a, #0a0a0a);
-      border-radius: .75rem; border: 1px solid #262626; min-height: 240px;
+      background: var(--bg-secondary);
+      border-radius: .75rem; border: 1px solid var(--border); min-height: 240px;
     }
     .skeleton:before{
       content: ""; position: absolute; inset: 0;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
       transform: translateX(-100%); animation: shimmer 1.4s infinite;
     }
+    [data-theme="light"] .skeleton:before {
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,.06), transparent);
+    }
     @keyframes shimmer { 100% { transform: translateX(100%); } }
 
     /* CTA fijo en móvil */
     .dock-cta { position: fixed; left: 0; right: 0; bottom: .75rem; z-index: 40; }
     @media (min-width: 640px){ .dock-cta { display:none; } }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .theme-toggle:hover {
+      background: var(--bg-card-hover);
+    }
+    .theme-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      transition: transform 0.3s ease;
+    }
   </style>
 </head>
 
-<body class="bg-neutral-950 text-neutral-100 antialiased">
-  <!-- Enlace “Saltar al contenido” para accesibilidad -->
-  <a href="#contenido" class="sr-only focus:not-sr-only focus-ring focus:bg-neutral-800 px-4 py-2 absolute left-4 top-4 rounded-lg">Saltar al contenido</a>
+<body>
+  <!-- Enlace "Saltar al contenido" para accesibilidad -->
+  <a href="#contenido" class="sr-only focus:not-sr-only focus-ring focus:bg-theme-card px-4 py-2 absolute left-4 top-4 rounded-lg">Saltar al contenido</a>
 
   <!-- Header / Navbar -->
-  <header class="sticky top-0 z-30 border-b border-neutral-800 header-blur">
+  <header class="sticky top-0 z-30 border-b border-theme header-blur">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
       <a href="#" class="text-lg sm:text-xl font-bold tracking-tight hover:opacity-90 focus-ring" aria-label="Inicio ProtoSeed">
         <span class="text-emerald-300">Proto</span><span class="text-emerald-500">Seed</span>
       </a>
 
-      <nav aria-label="Principal" class="flex items-center gap-6">
+      <nav aria-label="Principal" class="flex items-center gap-4">
         <ul class="hidden sm:flex items-center gap-6 text-sm">
           <li><a class="focus-ring hover:underline" href="#proceso">Proceso</a></li>
           <li><a class="focus-ring hover:underline" href="#fruit">Fruit Attraction</a></li>
         </ul>
+
+        <!-- Theme Toggle Button -->
+        <button id="themeToggle" class="theme-toggle focus-ring" aria-label="Cambiar tema" aria-pressed="false">
+          <svg id="sunIcon" class="theme-icon" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg id="moonIcon" class="theme-icon" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
 
         <a href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
            class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-lg font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 focus-ring text-sm">
@@ -97,14 +221,14 @@
 
         <!-- Menú móvil sin JS (details/summary) -->
         <details class="sm:hidden">
-          <summary class="list-none focus-ring px-2 py-1 rounded-lg border border-neutral-800">
+          <summary class="list-none focus-ring px-2 py-1 rounded-lg border border-theme">
             <span class="sr-only">Abrir menú</span>
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </summary>
-          <ul class="absolute right-4 mt-2 w-48 rounded-xl border border-neutral-800 bg-neutral-900 p-2 text-sm shadow-xl">
-            <li><a class="block px-3 py-2 rounded-lg hover:bg-neutral-800 focus-ring" href="#proceso">Proceso</a></li>
-            <li><a class="block px-3 py-2 rounded-lg hover:bg-neutral-800 focus-ring" href="#fruit">Fruit Attraction</a></li>
-            <li><a class="block px-3 py-2 rounded-lg hover:bg-neutral-800 focus-ring" href="#contacto">Contacto</a></li>
+          <ul class="absolute right-4 mt-2 w-48 rounded-xl border border-theme bg-theme-card p-2 text-sm shadow-xl">
+            <li><a class="block px-3 py-2 rounded-lg hover:bg-theme-card-hover focus-ring" href="#proceso">Proceso</a></li>
+            <li><a class="block px-3 py-2 rounded-lg hover:bg-theme-card-hover focus-ring" href="#fruit">Fruit Attraction</a></li>
+            <li><a class="block px-3 py-2 rounded-lg hover:bg-theme-card-hover focus-ring" href="#contacto">Contacto</a></li>
           </ul>
         </details>
       </nav>
@@ -124,7 +248,7 @@
           Plantamos el <span class="text-emerald-400">código</span>, tú cosechas el <span class="text-emerald-300">éxito</span>.
         </h1>
 
-        <p class="mt-5 text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto">
+        <p class="mt-5 text-base sm:text-lg text-theme-secondary max-w-2xl mx-auto">
           De la idea a la germinación en tiempo récord. Prototipado ágil (MVP/PoC) especializado en agrotech.
         </p>
 
@@ -134,7 +258,7 @@
             Prototipa tu idea ahora
             <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </a>
-          <a href="#fruit" class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold border border-neutral-700 hover:bg-neutral-900 transition-all duration-200">
+          <a href="#fruit" class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold border border-theme hover:bg-theme-card transition-all duration-200">
             Ver nuestro dashboard en vivo
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3l-9 9M5 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </a>
@@ -151,73 +275,73 @@
     </div>
 
     <!-- Proceso -->
-    <section id="proceso" aria-labelledby="proceso-titulo" class="py-12 sm:py-16 border-t border-neutral-800">
+    <section id="proceso" aria-labelledby="proceso-titulo" class="py-12 sm:py-16 border-t border-theme">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 id="proceso-titulo" class="text-2xl sm:text-3xl font-bold">Proceso: de semilla a brote</h2>
-        <p class="mt-3 text-neutral-300 max-w-3xl">
+        <p class="mt-3 text-theme-secondary max-w-3xl">
           Convertimos hipótesis en aprendizaje validado con un MVP/PoC funcional y medible. Cuatro pasos claros para reducir riesgo, tiempo y coste.
         </p>
 
         <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200 card">
+          <article class="rounded-2xl border border-theme p-6 bg-theme-card bg-theme-card-hover transition-all duration-200 card">
             <div class="flex items-center gap-3">
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4c4 2.5 6 6.3 6 9 0 2.7-2 5.1-6 6.4C8 18.1 6 15.7 6 13c0-2.7 2-6.5 6-9z" fill="currentColor"/></svg>
               <h3 class="font-semibold">1. Semilla</h3>
             </div>
-            <p class="mt-3 text-sm text-neutral-300">Evaluación de oportunidad, riesgos y métricas de éxito.</p>
+            <p class="mt-3 text-sm text-theme-secondary">Evaluación de oportunidad, riesgos y métricas de éxito.</p>
           </article>
 
-          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200 card">
+          <article class="rounded-2xl border border-theme p-6 bg-theme-card bg-theme-card-hover transition-all duration-200 card">
             <div class="flex items-center gap-3">
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17h18v2H3zM4 13h16l-3-4-5 3-3-2-5 3z" fill="currentColor"/></svg>
               <h3 class="font-semibold">2. Terreno</h3>
             </div>
-            <p class="mt-3 text-sm text-neutral-300">Arquitectura UX/tech, backlog mínimo y plan de sprints.</p>
+            <p class="mt-3 text-sm text-theme-secondary">Arquitectura UX/tech, backlog mínimo y plan de sprints.</p>
           </article>
 
-          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200 card">
+          <article class="rounded-2xl border border-theme p-6 bg-theme-card bg-theme-card-hover transition-all duration-200 card">
             <div class="flex items-center gap-3">
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l4 4-7 7-2 1 1-2 7-7zM5 19a3 3 0 106 0c0 1.657-3 3-3 3s-3-1.343-3-3z" fill="currentColor"/></svg>
               <h3 class="font-semibold">3. Riego</h3>
             </div>
-            <p class="mt-3 text-sm text-neutral-300">Codificamos el MVP/PoC con métricas y pruebas. Iteración rápida.</p>
+            <p class="mt-3 text-sm text-theme-secondary">Codificamos el MVP/PoC con métricas y pruebas. Iteración rápida.</p>
           </article>
 
-          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200 card">
+          <article class="rounded-2xl border border-theme p-6 bg-theme-card bg-theme-card-hover transition-all duration-200 card">
             <div class="flex items-center gap-3">
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c0-6 4-10 4-10s4 4 4 10h-8zM12 20c0-6-4-10-4-10S4 14 4 20h8z" fill="currentColor"/></svg>
               <h3 class="font-semibold">4. Brote</h3>
             </div>
-            <p class="mt-3 text-sm text-neutral-300">Producto funcional, documentación y handover para escalar.</p>
+            <p class="mt-3 text-sm text-theme-secondary">Producto funcional, documentación y handover para escalar.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Showcase “Fruit Attraction” (único proyecto con embed) -->
-    <section id="fruit" aria-labelledby="showcase-titulo" class="py-12 sm:py-16 border-t border-neutral-800">
+    <!-- Showcase "Fruit Attraction" (único proyecto con embed) -->
+    <section id="fruit" aria-labelledby="showcase-titulo" class="py-12 sm:py-16 border-t border-theme">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between">
-          <h2 id="showcase-titulo" class="text-2xl sm:text-3xl font-bold">Showcase “Fruit Attraction”</h2>
+          <h2 id="showcase-titulo" class="text-2xl sm:text-3xl font-bold">Showcase "Fruit Attraction"</h2>
           <span class="hidden sm:inline-flex items-center gap-2 text-xs px-2 py-1 rounded-lg bg-emerald-600/15 text-emerald-300 border border-emerald-700/40">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> En vivo
           </span>
         </div>
 
-        <article class="mt-6 group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200 card">
+        <article class="mt-6 group rounded-2xl border border-theme p-6 bg-theme-card bg-theme-card-hover transition-all duration-200 card">
           <div class="flex items-center justify-between gap-3">
             <div class="flex items-center gap-3">
               <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4V8H4v12zm6 0h4V4h-4v16zm6 0h4v-9h-4v9z" fill="currentColor"/></svg>
               <h3 class="font-semibold">Análisis de Precios Agrícolas</h3>
             </div>
             <a href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener"
-               class="focus-ring inline-flex items-center gap-2 px-3 py-2 rounded-lg font-medium border border-neutral-700 hover:bg-neutral-900 text-xs">
+               class="focus-ring inline-flex items-center gap-2 px-3 py-2 rounded-lg font-medium border border-theme hover:bg-theme-card text-xs">
               Abrir en ventana nueva
               <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3l-9 9M5 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </a>
           </div>
 
-          <p class="mt-2 text-sm text-neutral-300">
+          <p class="mt-2 text-sm text-theme-secondary">
             Análisis interactivo para productores agrícolas: explora tendencias, compara cultivos y decide con datos.
           </p>
 
@@ -227,14 +351,14 @@
             <iframe
               title="Análisis de Precios Agrícolas — ProtoSeed"
               src="https://agro-agents-demo.onrender.com/es"
-              class="absolute inset-0 w-full h-full rounded-xl border border-neutral-800"
+              class="absolute inset-0 w-full h-full rounded-xl border border-theme"
               loading="lazy" referrerpolicy="no-referrer"
               sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
               onload="document.getElementById('panel-skeleton')?.remove();">
             </iframe>
           </div>
 
-          <p class="mt-3 text-xs text-neutral-500">
+          <p class="mt-3 text-xs text-theme-muted">
             Si no ves el panel, accede directamente:
             <a class="focus-ring underline" href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener">agro-agents-demo.onrender.com/es</a>
           </p>
@@ -243,10 +367,10 @@
     </section>
 
     <!-- Sobre ProtoSeed -->
-    <section aria-labelledby="sobre" class="py-12 sm:py-16 border-t border-neutral-800">
+    <section aria-labelledby="sobre" class="py-12 sm:py-16 border-t border-theme">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 id="sobre" class="text-2xl sm:text-3xl font-bold">Sobre ProtoSeed</h2>
-        <p class="mt-3 text-neutral-300">
+        <p class="mt-3 text-theme-secondary">
           Somos un equipo ágil enfocado en etapas tempranas. Convertimos ideas en prototipos funcionales que validan valor y viabilidad técnica.
           Trabajamos con ciclos cortos, métricas desde el día uno y documentación clara para facilitar la transferencia al equipo del cliente.
           Entregamos código, pruebas, tableros de seguimiento y un plan de siguientes pasos para escalar con seguridad.
@@ -255,35 +379,35 @@
     </section>
 
     <!-- FAQ -->
-    <section aria-labelledby="faq" class="py-12 sm:py-16 border-t border-neutral-800">
+    <section aria-labelledby="faq" class="py-12 sm:py-16 border-t border-theme">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 id="faq" class="text-2xl sm:text-3xl font-bold">FAQ</h2>
         <dl class="mt-6 space-y-6">
           <div>
             <dt class="font-semibold">¿Cuáles son los plazos típicos?</dt>
-            <dd class="text-neutral-300">Los MVP/PoC se planifican en sprints cortos. Acordamos un alcance mínimo valioso y fechas de demo para iterar con evidencia.</dd>
+            <dd class="text-theme-secondary">Los MVP/PoC se planifican en sprints cortos. Acordamos un alcance mínimo valioso y fechas de demo para iterar con evidencia.</dd>
           </div>
           <div>
             <dt class="font-semibold">¿Qué entregables recibo?</dt>
-            <dd class="text-neutral-300">Código en repositorio, documentación de arquitectura/decisiones, guía de despliegue, checklist de pruebas y tablero de métricas.</dd>
+            <dd class="text-theme-secondary">Código en repositorio, documentación de arquitectura/decisiones, guía de despliegue, checklist de pruebas y tablero de métricas.</dd>
           </div>
           <div>
             <dt class="font-semibold">¿De quién es la propiedad intelectual?</dt>
-            <dd class="text-neutral-300">La PI es del cliente. ProtoSeed realiza la cesión completa del trabajo y sus artefactos.</dd>
+            <dd class="text-theme-secondary">La PI es del cliente. ProtoSeed realiza la cesión completa del trabajo y sus artefactos.</dd>
           </div>
           <div>
             <dt class="font-semibold">¿Qué tecnologías utilizáis?</dt>
-            <dd class="text-neutral-300">Stack pragmático y orientado a objetivos: web/backend, datos, IoT, visión y asistentes con IA cuando aportan ROI, siempre con buenas prácticas de seguridad.</dd>
+            <dd class="text-theme-secondary">Stack pragmático y orientado a objetivos: web/backend, datos, IoT, visión y asistentes con IA cuando aportan ROI, siempre con buenas prácticas de seguridad.</dd>
           </div>
         </dl>
       </div>
     </section>
 
     <!-- CTA Final -->
-    <section id="contacto" class="py-12 sm:py-16 border-t border-neutral-800 text-center">
+    <section id="contacto" class="py-12 sm:py-16 border-t border-theme text-center">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-2xl sm:text-3xl font-bold">¿Listo para plantar tu idea?</h2>
-        <p class="mt-3 text-neutral-300">Cuéntanos el problema, la oportunidad y el éxito esperado. Diseñamos el prototipo juntos.</p>
+        <p class="mt-3 text-theme-secondary">Cuéntanos el problema, la oportunidad y el éxito esperado. Diseñamos el prototipo juntos.</p>
         <div class="mt-6 flex justify-center">
           <a
             href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
@@ -300,17 +424,67 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-neutral-800">
+  <footer class="border-t border-theme">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div>
         <p class="font-semibold"><span class="text-emerald-300">Proto</span><span class="text-emerald-500">Seed</span></p>
-        <p class="text-sm text-neutral-400 mt-1">“Nosotros plantamos el código, tú cosechas el éxito.”</p>
+        <p class="text-sm text-theme-muted mt-1">"Nosotros plantamos el código, tú cosechas el éxito."</p>
       </div>
       <div class="text-sm">
         <a class="focus-ring hover:underline" href="mailto:info@proto-seed.com">info@proto-seed.com</a>
       </div>
     </div>
   </footer>
+
+  <!-- ====== LÓGICA DE TEMA (toggle + persistencia + iconos + meta) ====== -->
+  <script>
+    (function() {
+      var btn = document.getElementById('themeToggle');
+      var sun = document.getElementById('sunIcon');
+      var moon = document.getElementById('moonIcon');
+      var meta = document.querySelector('meta[name="theme-color"]');
+
+      function currentTheme() {
+        return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      }
+      function applyTheme(theme) {
+        if (theme === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+          btn?.setAttribute('aria-pressed', 'true');
+          if (sun) sun.style.display = 'none';
+          if (moon) moon.style.display = 'block';
+          if (meta) meta.setAttribute('content', '#ffffff');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+          btn?.setAttribute('aria-pressed', 'false');
+          if (sun) sun.style.display = 'block';
+          if (moon) moon.style.display = 'none';
+          if (meta) meta.setAttribute('content', '#0a0a0a');
+        }
+      }
+      // Inicializa iconos según estado
+      applyTheme(currentTheme());
+
+      // Toggle
+      btn?.addEventListener('click', function () {
+        var next = currentTheme() === 'light' ? 'dark' : 'light';
+        applyTheme(next);
+        try { localStorage.setItem('ps-theme', next); } catch(e) {}
+      });
+
+      // Si el usuario cambia el tema del SO y no hay preferencia guardada, respeta el cambio
+      var mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
+      if (mq && typeof mq.addEventListener === 'function') {
+        mq.addEventListener('change', function(e) {
+          try {
+            if (!localStorage.getItem('ps-theme')) {
+              applyTheme(e.matches ? 'light' : 'dark');
+            }
+          } catch (err) {}
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
 
