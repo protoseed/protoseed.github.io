@@ -65,14 +65,13 @@
   <main id="contenido">
     <!-- HERO: claim + subclaim + CTA + SVG semilla→brote -->
     <!-- Bloque clave: Héroe -->
-    <section class="relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 grid lg:grid-cols-2 gap-10 items-center">
-        <div>
-          <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight">
-            Nosotros <span class="text-emerald-400">plantamos el código</span>, tú <span class="text-emerald-300">cosechas el éxito</span>.
-          </h1>
-          <p class="mt-4 text-lg text-neutral-300">De la idea a la germinación en tiempo récord. Prototipado ágil (MVP/PoC) especializado en agrotech.</p>
-          <div class="mt-8 flex flex-wrap items-center gap-4">
+<section class="relative overflow-hidden min-h-[40vh] flex items-center">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight">
+      Nosotros <span class="text-emerald-400">plantamos el código</span>, tú <span class="text-emerald-300">cosechas el éxito</span>.
+    </h1>
+    <p class="mt-4 text-lg text-neutral-300">De la idea a la germinación en tiempo récord. Prototipado ágil (MVP/PoC) especializado en agrotech.</p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
               class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 transition-all duration-200"
@@ -87,63 +86,6 @@
           </div>
         </div>
 
-        <!-- Motivo visual: semilla → brote (SVG inline, animación de crecer) -->
-        <div class="relative">
-          <svg class="w-full max-w-md mx-auto sprout-animate" viewBox="0 0 320 320" role="img" aria-labelledby="heroSeedTitle heroSeedDesc">
-            <title id="heroSeedTitle">Metáfora de semilla creciendo hasta brote</title>
-            <desc id="heroSeedDesc">Ilustración de una semilla que germina y produce un brote en tres etapas.</desc>
-            <defs>
-              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="rgb(16,185,129)"/>
-                <stop offset="100%" stop-color="rgb(5,150,105)"/>
-              </linearGradient>
-            </defs>
-            <!-- Línea del suelo -->
-            <rect x="0" y="240" width="320" height="4" fill="rgb(38,38,38)"/>
-            <!-- Etapa 1: Semilla -->
-            <g transform="translate(40,200)">
-              <circle cx="30" cy="30" r="28" fill="url(#g1)"/>
-              <path d="M30 18c9 6 14 14 14 21s-5 14-14 17c-9-3-14-10-14-17s5-15 14-21z" fill="white" opacity="0.9"/>
-              <text x="30" y="72" text-anchor="middle" font-size="12" fill="#a3a3a3">Semilla</text>
-            </g>
-            <!-- Etapa 2: Germinación -->
-            <g transform="translate(125,170)">
-              <path d="M35 60c0-18 8-30 8-30s8 12 8 30-16 18-16 0z" fill="url(#g1)"/>
-              <path d="M43 30c6-10 18-14 28-10-4 10-14 18-24 18-2 0-3-4-4-8z" fill="rgb(134,239,172)"/>
-              <text x="43" y="90" text-anchor="middle" font-size="12" fill="#a3a3a3">Germinación</text>
-            </g>
-            <!-- Etapa 3: Brote -->
-            <g transform="translate(220,130)">
-              <path d="M40 110c0-34 10-60 10-60s10 26 10 60-20 34-20 0z" fill="url(#g1)"/>
-              <path d="M50 60c10-18 30-25 46-18-6 17-22 30-40 30-3 0-4-5-6-12z" fill="rgb(110,231,183)"/>
-              <path d="M50 48c-10-18-30-25-46-18 6 17 22 30 40 30 3 0 4-5 6-12z" fill="rgb(16,185,129)"/>
-              <text x="50" y="136" text-anchor="middle" font-size="12" fill="#a3a3a3">Brote</text>
-            </g>
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sección: Por qué Fruit Attraction -->
-    <section aria-labelledby="por-que-fruit" class="py-12 sm:py-16 border-t border-neutral-800">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="por-que-fruit" class="text-2xl sm:text-3xl font-bold">Por qué Fruit Attraction</h2>
-        <p class="mt-3 text-neutral-300">Fruit Attraction, organizada en IFEMA Madrid con la colaboración de FEPEX, es reconocida como el gran evento del sector de frutas y hortalizas. Reúne a toda la cadena de valor, impulsa la innovación y actúa como epicentro internacional durante tres días intensos.</p>
-        <ul class="mt-6 grid sm:grid-cols-2 gap-4">
-          <li class="flex items-start gap-3">
-            <span class="mt-1 inline-block w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
-            <p><strong>Networking de alto impacto:</strong> encuentros con productores, tecnólogos, distribuidores y retail.</p>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="mt-1 inline-block w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
-            <p><strong>Innovación aplicada:</strong> escaparate ideal para validar PoC y MVP en contextos reales.</p>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="mt-1 inline-block w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
-            <p><strong>Cadena de valor completa:</strong> campo, logística, industria auxiliar y mercados.</p>
-          </li>
-        </ul>
-      </div>
     </section>
 
     <!-- Proceso en 4 pasos (con iconos SVG) -->
@@ -197,106 +139,69 @@
       </div>
     </section>
 
-    <!-- Showcase “Fruit Attraction” (3–6 tarjetas) -->
-    <!-- Bloque clave: Proyectos / Ideas -->
-    <section id="fruit" aria-labelledby="showcase-titulo" class="py-12 sm:py-16 border-t border-neutral-800">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="showcase-titulo" class="text-2xl sm:text-3xl font-bold">Showcase “Fruit Attraction”</h2>
-        <p class="mt-3 text-neutral-300">Selección de ideas y prototipos orientados a la cadena de valor hortofrutícola. Ilustraciones ligeras (SVG) y beneficios directos.</p>
-
-        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Card 1 -->
-          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
-            <div class="flex items-center justify-between">
-              <!-- Sensor -->
-              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 017 7h-2a5 5 0 00-5-5V2zM19 12a7 7 0 01-7 7v-2a5 5 0 005-5h2zM12 21a7 7 0 01-7-7h2a5 5 0 005 5v2zM5 12a7 7 0 017-7v2a5 5 0 00-5 5H5z" fill="currentColor"/></svg>
-              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">IoT</span>
-            </div>
-            <h3 class="mt-4 font-semibold">Sensórica de invernadero</h3>
-            <p class="text-sm text-neutral-300">Lecturas en tiempo real y alertas de riego/ventilación.</p>
-            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">telemetría</li>
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">automatización</li>
-            </ul>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
-            <div class="flex items-center justify-between">
-              <!-- Visión -->
-              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 10a3 3 0 110-6 3 3 0 010 6z" fill="currentColor"/></svg>
-              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Visión</span>
-            </div>
-            <h3 class="mt-4 font-semibold">Clasificación por visión</h3>
-            <p class="text-sm text-neutral-300">Detección de defectos y calibre para mejorar la calidad.</p>
-            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">QA</li>
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">edge</li>
-            </ul>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
-            <div class="flex items-center justify-between">
-              <!-- Trazabilidad -->
-              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10H7zM3 3h4v4H3zM17 17h4v4h-4z" fill="currentColor"/></svg>
-              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Trazabilidad</span>
-            </div>
-            <h3 class="mt-4 font-semibold">Loteado y trazabilidad</h3>
-            <p class="text-sm text-neutral-300">Del campo al pallet con auditoría y eventos GS1.</p>
-            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">etiquetado</li>
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">cumplimiento</li>
-            </ul>
-          </article>
-
-          <!-- Card 4 -->
-          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
-            <div class="flex items-center justify-between">
-              <!-- Frío -->
-              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M4 6l16 12M20 6L4 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Logística fría</span>
-            </div>
-            <h3 class="mt-4 font-semibold">Cadena de frío monitorizada</h3>
-            <p class="text-sm text-neutral-300">Alarmas de temperatura y rutas con evidencia.</p>
-            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">rastreadores</li>
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">reporting</li>
-            </ul>
-          </article>
-
-          <!-- Card 5 -->
-          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
-            <div class="flex items-center justify-between">
-              <!-- Datos -->
-              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4V8H4v12zm6 0h4V4h-4v16zm6 0h4v-9h-4v9z" fill="currentColor"/></svg>
-              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Analítica</span>
-            </div>
-            <h3 class="mt-4 font-semibold">Cuadros de mando operativos</h3>
-            <p class="text-sm text-neutral-300">KPIs de rendimiento y costes por parcela/cultivo.</p>
-            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">BI</li>
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">alertas</li>
-            </ul>
-          </article>
-
-          <!-- Card 6 -->
-          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
-            <div class="flex items-center justify-between">
-              <!-- Asistentes -->
-              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-9 9a9 9 0 1118 0H3z" fill="currentColor"/></svg>
-              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Asistentes</span>
-            </div>
-            <h3 class="mt-4 font-semibold">Agentes para campo y almacén</h3>
-            <p class="text-sm text-neutral-300">Flujos guiados: incidencias, partes y checklist.</p>
-            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">LLM</li>
-              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">operaciones</li>
-            </ul>
-          </article>
+<!-- Showcase “Fruit Attraction” (único proyecto con embed) -->
+<section id="fruit" aria-labelledby="showcase-titulo" class="py-12 sm:py-16 border-t border-neutral-800">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 id="showcase-titulo" class="text-2xl sm:text-3xl font-bold">Showcase “Fruit Attraction”</h2>
+    <div class="mt-8 grid lg:grid-cols-1 gap-6">
+      <!-- Card: Dashboard de análisis de precios (con embed) -->
+      <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+        <div class="flex items-center justify-between gap-3">
+          <!-- Icono dashboard -->
+          <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 20h4V8H4v12zm6 0h4V4h-4v16zm6 0h4v-9h-4v9z" fill="currentColor"/>
+          </svg>
+          <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Analítica</span>
         </div>
-      </div>
-    </section>
+
+        <h3 class="mt-4 font-semibold">Análisis de Precios Agrícolas</h3>
+        <p class="text-sm text-neutral-300">
+          Análisis interactivo para productores agrícolas para maximizar el valor de mercado. Explora tendencias,
+          compara cultivos y toma decisiones con datos.
+        </p>
+
+        <!-- Badges -->
+        <ul class="mt-3 flex flex-wrap gap-2 text-xs">
+          <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">precios</li>
+          <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">BI</li>
+          <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">market insights</li>
+        </ul>
+
+        <!-- Acciones -->
+        <div class="mt-4 flex flex-wrap items-center gap-3">
+          <a href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener"
+             class="focus-ring inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium border border-neutral-700 hover:bg-neutral-900">
+            Abrir en ventana nueva
+            <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+              <path d="M14 3h7v7M21 3l-9 9M5 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Embed responsive del dashboard -->
+        <div class="mt-6 relative w-full" style="padding-top:56.25%;">
+          <iframe
+            title="Análisis de Precios Agrícolas — ProtoSeed"
+            src="https://agro-agents-demo.onrender.com/es"
+            class="absolute inset-0 w-full h-full rounded-xl border border-neutral-800"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+          ></iframe>
+        </div>
+
+        <!-- Fallback accesible si el embed no carga -->
+        <p class="mt-3 text-xs text-neutral-500">
+          Si no ves el panel embebido, accede directamente:
+          <a class="focus-ring underline" href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener">
+            agro-agents-demo.onrender.com/es
+          </a>
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
 
     <!-- Sobre ProtoSeed -->
     <section aria-labelledby="sobre" class="py-12 sm:py-16 border-t border-neutral-800">
@@ -358,8 +263,6 @@
       </div>
       <div class="text-sm">
         <a class="focus-ring hover:underline" href="mailto:info@proto-seed.com">info@proto-seed.com</a>
-        <span class="mx-2 text-neutral-600">•</span>
-        <a class="focus-ring hover:underline" href="https://github.com/protoseed/landing" target="_blank" rel="noopener">concepto inicial en GitHub</a>
       </div>
     </div>
   </footer>
