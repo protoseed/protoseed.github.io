@@ -300,44 +300,82 @@
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> <span data-i18n="live">En vivo</span>
           </span>
         </div>
-
+    
         <article class="mt-6 group rounded-2xl border border-theme p-6 bg-theme-card bg-theme-card-hover transition-all duration-200 card">
           <div class="flex items-center justify-between gap-3">
             <div class="flex items-center gap-3">
               <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4V8H4v12zm6 0h4V4h-4v16zm6 0h4v-9h-4v9z" fill="currentColor"/></svg>
               <h3 class="font-semibold" data-i18n="dashboard_title">Análisis de Precios Agrícolas</h3>
             </div>
-            <a id="dashboardLink" href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener"
+            <!-- Note: href will be set by the script below -->
+            <a id="dashboardLink" href="#" target="_blank" rel="noopener"
                class="focus-ring inline-flex items-center gap-2 px-3 py-2 rounded-lg font-medium border border-theme hover:bg-theme-card text-xs" data-i18n="open_new_window">
               Abrir en ventana nueva
               <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3l-9 9M5 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </a>
           </div>
-
+    
           <p class="mt-2 text-sm text-theme-secondary" data-i18n="dashboard_desc">
             Análisis interactivo para productores agrícolas: explora tendencias, compara cultivos y decide con datos.
           </p>
-
+    
           <!-- Skeleton + iframe (16:9) -->
           <div class="mt-5 relative w-full" style="aspect-ratio:16/9;">
             <div id="panel-skeleton" class="skeleton w-full h-full rounded-xl"></div>
+            <!-- Note: src will be set by the script below -->
             <iframe
               id="dashboardFrame"
               title="Análisis de Precios Agrícolas — ProtoSeed"
-              src="https://agro-agents-demo.onrender.com/es"
+              src=""
               class="absolute inset-0 w-full h-full rounded-xl border border-theme"
               loading="lazy" referrerpolicy="no-referrer"
               sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
               onload="document.getElementById('panel-skeleton')?.remove();">
             </iframe>
           </div>
-
+    
           <p class="mt-3 text-xs text-theme-muted">
             <span data-i18n="if_no_panel">Si no ves el panel, accede directamente:</span>
-            <a id="dashboardDirect" class="focus-ring underline" href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener">agro-agents-demo.onrender.com/es</a>
+            <!-- Note: href/text will be set by the script below -->
+            <a id="dashboardDirect" class="focus-ring underline" href="#" target="_blank" rel="noopener">agro-agents-demo.onrender.com</a>
           </p>
         </article>
       </div>
+    
+      <!-- Language-aware dashboard URLs -->
+      <script>
+        (function () {
+          // Decide language: ?lang= takes priority, then localStorage, then <html lang>, default 'es'
+          var params = new URLSearchParams(location.search);
+          var ql = params.get('lang');
+          var stored = null; try { stored = localStorage.getItem('ps-lang'); } catch(e) {}
+          var docLang = (document.documentElement.getAttribute('lang') || 'es').toLowerCase();
+          var lang = (ql || stored || docLang).startsWith('en') ? 'en' : 'es';
+    
+          var base = 'https://agro-agents-demo.onrender.com/';
+          var path = lang === 'en' ? 'en' : 'es';
+          var url  = base + path;
+    
+          // Set href/src/texts
+          var link   = document.getElementById('dashboardLink');
+          var frame  = document.getElementById('dashboardFrame');
+          var direct = document.getElementById('dashboardDirect');
+    
+          if (link)  link.href  = url;
+          if (frame) frame.src  = url;
+          if (direct) {
+            direct.href = url;
+            direct.textContent = 'agro-agents-demo.onrender.com/' + path;
+          }
+    
+          // Optional: update iframe title per language (keeps accessibility tidy)
+          if (frame) {
+            frame.title = (lang === 'en')
+              ? 'Agricultural Price Analytics — ProtoSeed'
+              : 'Análisis de Precios Agrícolas — ProtoSeed';
+          }
+        })();
+      </script>
     </section>
 
     <!-- Sobre ProtoSeed -->
