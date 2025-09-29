@@ -1,15 +1,367 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>Redirecting...</title>
-  <link rel="canonical" href="https://agro-agents.github.io/landing/">
-  <meta http-equiv="refresh" content="0; url=https://agro-agents.github.io/landing/">
-  <script type="text/javascript">
-    window.location.href = "https://agro-agents.github.io/landing/";
-  </script>
+  <!-- Meta básicas -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ProtoSeed — Prototipado ágil en agrotech | Presencia en Fruit Attraction (IFEMA)</title>
+  <meta name="description" content="ProtoSeed: prototipado ágil (MVP/PoC) para agrotech. Presencia en Fruit Attraction (IFEMA). De la idea a la germinación en tiempo récord." />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ProtoSeed — Prototipado ágil en agrotech" />
+  <meta property="og:description" content="De la idea a la germinación en tiempo récord. Presencia en Fruit Attraction (IFEMA)." />
+  <!-- Ligera imagen OG embebida como SVG data URI -->
+  <meta property="og:image" content='data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="%23111"/><g transform="translate(100,120)"><text x="0" y="0" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="64" fill="%23A7F3D0">ProtoSeed</text><text x="0" y="84" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="40" fill="%23FFFFFF">Nosotros plantamos el código, tú cosechas el éxito.</text><g transform="translate(0,140)"><circle cx="60" cy="60" r="56" fill="%2316A34A"/><path d="M60 35c14 9 22 22 22 34 0 12-8 23-22 28-14-5-22-16-22-28 0-12 8-25 22-34z" fill="%23fff"/></g></g></svg>' />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon (emoji en data URI) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%2772%27 font-size=%2780%27%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E" />
+
+  <!-- TailwindCSS vía CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Variables y estilos mínimos (sin librerías externas) -->
+  <style>
+    :root { --accent: #16a34a; } /* Verde acento (ajustable) */
+    /* Utilidad de foco visible accesible */
+    .focus-ring:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    /* Animación sutil de “crecer” para el brote del hero */
+    @keyframes grow {
+      0% { transform: scale(0.92) translateY(4px); opacity: 0.85; }
+      50% { transform: scale(1.02) translateY(0); opacity: 1; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .sprout-animate { animation: grow 2.2s ease-out 1.2s both; }
+    /* Preferencias de movimiento del usuario */
+    @media (prefers-reduced-motion: reduce) {
+      .sprout-animate, .transition-all, .duration-200 { animation: none !important; transition: none !important; }
+    }
+  </style>
 </head>
-<body>
-  <p>If you are not redirected automatically, follow this <a href="https://agro-agents.github.io/landing/">link to the landing page</a>.</p>
+
+<body class="bg-neutral-950 text-neutral-100 antialiased">
+  <!-- Enlace “Saltar al contenido” para accesibilidad -->
+  <a href="#contenido" class="sr-only focus:not-sr-only focus-ring focus:bg-neutral-800 px-4 py-2 absolute left-4 top-4 rounded-lg">Saltar al contenido</a>
+
+  <!-- Header / Navbar -->
+  <header class="border-b border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <!-- Logo tipográfico -->
+      <a href="#" class="text-xl sm:text-2xl font-bold tracking-tight hover:opacity-90 focus-ring" aria-label="Inicio ProtoSeed">
+        <span class="text-emerald-300">Proto</span><span class="text-emerald-500">Seed</span>
+      </a>
+      <!-- Navegación -->
+      <nav aria-label="Principal">
+        <ul class="flex items-center gap-4 sm:gap-6 text-sm">
+          <li><a class="focus-ring hover:underline" href="#proceso">Proceso</a></li>
+          <li><a class="focus-ring hover:underline" href="#fruit">Fruit Attraction</a></li>
+          <li><a class="focus-ring hover:underline" href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- HERO: claim + subclaim + CTA + SVG semilla→brote -->
+    <!-- Bloque clave: Héroe -->
+    <section class="relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight">
+            Nosotros <span class="text-emerald-400">plantamos el código</span>, tú <span class="text-emerald-300">cosechas el éxito</span>.
+          </h1>
+          <p class="mt-4 text-lg text-neutral-300">De la idea a la germinación en tiempo récord. Prototipado ágil (MVP/PoC) especializado en agrotech.</p>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
+              class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 transition-all duration-200"
+              aria-label="Prototipa tu idea ahora, abre tu cliente de correo">
+              Prototipa tu idea ahora
+              <!-- Flecha -->
+              <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#fruit" class="focus-ring inline-flex items-center px-5 py-3 rounded-xl font-semibold border border-neutral-700 hover:bg-neutral-900 transition-all duration-200">Ver proyectos de Fruit Attraction</a>
+          </div>
+        </div>
+
+        <!-- Motivo visual: semilla → brote (SVG inline, animación de crecer) -->
+        <div class="relative">
+          <svg class="w-full max-w-md mx-auto sprout-animate" viewBox="0 0 320 320" role="img" aria-labelledby="heroSeedTitle heroSeedDesc">
+            <title id="heroSeedTitle">Metáfora de semilla creciendo hasta brote</title>
+            <desc id="heroSeedDesc">Ilustración de una semilla que germina y produce un brote en tres etapas.</desc>
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="rgb(16,185,129)"/>
+                <stop offset="100%" stop-color="rgb(5,150,105)"/>
+              </linearGradient>
+            </defs>
+            <!-- Línea del suelo -->
+            <rect x="0" y="240" width="320" height="4" fill="rgb(38,38,38)"/>
+            <!-- Etapa 1: Semilla -->
+            <g transform="translate(40,200)">
+              <circle cx="30" cy="30" r="28" fill="url(#g1)"/>
+              <path d="M30 18c9 6 14 14 14 21s-5 14-14 17c-9-3-14-10-14-17s5-15 14-21z" fill="white" opacity="0.9"/>
+              <text x="30" y="72" text-anchor="middle" font-size="12" fill="#a3a3a3">Semilla</text>
+            </g>
+            <!-- Etapa 2: Germinación -->
+            <g transform="translate(125,170)">
+              <path d="M35 60c0-18 8-30 8-30s8 12 8 30-16 18-16 0z" fill="url(#g1)"/>
+              <path d="M43 30c6-10 18-14 28-10-4 10-14 18-24 18-2 0-3-4-4-8z" fill="rgb(134,239,172)"/>
+              <text x="43" y="90" text-anchor="middle" font-size="12" fill="#a3a3a3">Germinación</text>
+            </g>
+            <!-- Etapa 3: Brote -->
+            <g transform="translate(220,130)">
+              <path d="M40 110c0-34 10-60 10-60s10 26 10 60-20 34-20 0z" fill="url(#g1)"/>
+              <path d="M50 60c10-18 30-25 46-18-6 17-22 30-40 30-3 0-4-5-6-12z" fill="rgb(110,231,183)"/>
+              <path d="M50 48c-10-18-30-25-46-18 6 17 22 30 40 30 3 0 4-5 6-12z" fill="rgb(16,185,129)"/>
+              <text x="50" y="136" text-anchor="middle" font-size="12" fill="#a3a3a3">Brote</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección: Por qué Fruit Attraction -->
+    <section aria-labelledby="por-que-fruit" class="py-12 sm:py-16 border-t border-neutral-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 id="por-que-fruit" class="text-2xl sm:text-3xl font-bold">Por qué Fruit Attraction</h2>
+        <p class="mt-3 text-neutral-300">Fruit Attraction, organizada en IFEMA Madrid con la colaboración de FEPEX, es reconocida como el gran evento del sector de frutas y hortalizas. Reúne a toda la cadena de valor, impulsa la innovación y actúa como epicentro internacional durante tres días intensos.</p>
+        <ul class="mt-6 grid sm:grid-cols-2 gap-4">
+          <li class="flex items-start gap-3">
+            <span class="mt-1 inline-block w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+            <p><strong>Networking de alto impacto:</strong> encuentros con productores, tecnólogos, distribuidores y retail.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 inline-block w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+            <p><strong>Innovación aplicada:</strong> escaparate ideal para validar PoC y MVP en contextos reales.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 inline-block w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+            <p><strong>Cadena de valor completa:</strong> campo, logística, industria auxiliar y mercados.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Proceso en 4 pasos (con iconos SVG) -->
+    <section id="proceso" aria-labelledby="proceso-titulo" class="py-12 sm:py-16 border-t border-neutral-800">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 id="proceso-titulo" class="text-2xl sm:text-3xl font-bold">Proceso: de semilla a brote</h2>
+        <!-- Resumen (120–160 palabras, manteniendo los 4 pasos) -->
+        <p class="mt-3 text-neutral-300">
+          En ProtoSeed somos los agricultores de las ideas en el mundo digital. Al igual que en los invernaderos de nuestra tierra, donde una pequeña semilla se convierte en fruto, trabajamos con la “genética” de tu idea para acelerar su germinación. <em>Proto</em> es el primer fruto tangible que demuestra viabilidad; <em>Seed</em> es el potencial puro que traes. Nuestro enfoque convierte hipótesis en aprendizaje validado con un MVP o PoC funcional, documentado y listo para evolucionar. En cuatro pasos claros: 1) seleccionamos la <strong>Semilla</strong> (evaluamos impacto y encaje), 2) preparamos el <strong>Terreno</strong> (arquitectura UX/tech y plan de sprints), 3) plantamos y <strong>Regamos</strong> (codificamos, instrumentamos métricas y pruebas), y 4) entregamos el <strong>Brote</strong> (producto funcional, traspaso de conocimiento y próximos hitos). Así reducimos riesgo, tiempo y coste, manteniendo la propiedad intelectual en tus manos y facilitando la transferencia para escalar.
+        </p>
+
+        <!-- Steps -->
+        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Paso 1 -->
+          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+            <div class="flex items-center gap-3">
+              <!-- Icono semilla -->
+              <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4c4 2.5 6 6.3 6 9 0 2.7-2 5.1-6 6.4C8 18.1 6 15.7 6 13c0-2.7 2-6.5 6-9z" fill="currentColor"/></svg>
+              <h3 class="font-semibold">1. Seleccionamos la Semilla</h3>
+            </div>
+            <p class="mt-3 text-sm text-neutral-300">Evaluación de oportunidad, riesgos y métricas de éxito. Alcance y criterios de validación.</p>
+          </article>
+          <!-- Paso 2 -->
+          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+            <div class="flex items-center gap-3">
+              <!-- Icono terreno -->
+              <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17h18v2H3zM4 13h16l-3-4-5 3-3-2-5 3z" fill="currentColor"/></svg>
+              <h3 class="font-semibold">2. Preparamos el Terreno</h3>
+            </div>
+            <p class="mt-3 text-sm text-neutral-300">Arquitectura UX/tech, backlog mínimo, plan de datos y seguridad. Roadmap de sprints.</p>
+          </article>
+          <!-- Paso 3 -->
+          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+            <div class="flex items-center gap-3">
+              <!-- Icono riego -->
+              <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l4 4-7 7-2 1 1-2 7-7zM5 19a3 3 0 106 0c0 1.657-3 3-3 3s-3-1.343-3-3z" fill="currentColor"/></svg>
+              <h3 class="font-semibold">3. Plantamos y Regamos</h3>
+            </div>
+            <p class="mt-3 text-sm text-neutral-300">Codificación del MVP/PoC con métricas, pruebas y demo continua. Iteración rápida.</p>
+          </article>
+          <!-- Paso 4 -->
+          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+            <div class="flex items-center gap-3">
+              <!-- Icono brote -->
+              <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c0-6 4-10 4-10s4 4 4 10h-8zM12 20c0-6-4-10-4-10S4 14 4 20h8z" fill="currentColor"/></svg>
+              <h3 class="font-semibold">4. Entregamos el Brote</h3>
+            </div>
+            <p class="mt-3 text-sm text-neutral-300">Producto funcional y documentado, handover y próximos pasos para escalar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase “Fruit Attraction” (3–6 tarjetas) -->
+    <!-- Bloque clave: Proyectos / Ideas -->
+    <section id="fruit" aria-labelledby="showcase-titulo" class="py-12 sm:py-16 border-t border-neutral-800">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 id="showcase-titulo" class="text-2xl sm:text-3xl font-bold">Showcase “Fruit Attraction”</h2>
+        <p class="mt-3 text-neutral-300">Selección de ideas y prototipos orientados a la cadena de valor hortofrutícola. Ilustraciones ligeras (SVG) y beneficios directos.</p>
+
+        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+            <div class="flex items-center justify-between">
+              <!-- Sensor -->
+              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 017 7h-2a5 5 0 00-5-5V2zM19 12a7 7 0 01-7 7v-2a5 5 0 005-5h2zM12 21a7 7 0 01-7-7h2a5 5 0 005 5v2zM5 12a7 7 0 017-7v2a5 5 0 00-5 5H5z" fill="currentColor"/></svg>
+              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">IoT</span>
+            </div>
+            <h3 class="mt-4 font-semibold">Sensórica de invernadero</h3>
+            <p class="text-sm text-neutral-300">Lecturas en tiempo real y alertas de riego/ventilación.</p>
+            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">telemetría</li>
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">automatización</li>
+            </ul>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+            <div class="flex items-center justify-between">
+              <!-- Visión -->
+              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 10a3 3 0 110-6 3 3 0 010 6z" fill="currentColor"/></svg>
+              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Visión</span>
+            </div>
+            <h3 class="mt-4 font-semibold">Clasificación por visión</h3>
+            <p class="text-sm text-neutral-300">Detección de defectos y calibre para mejorar la calidad.</p>
+            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">QA</li>
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">edge</li>
+            </ul>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+            <div class="flex items-center justify-between">
+              <!-- Trazabilidad -->
+              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10H7zM3 3h4v4H3zM17 17h4v4h-4z" fill="currentColor"/></svg>
+              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Trazabilidad</span>
+            </div>
+            <h3 class="mt-4 font-semibold">Loteado y trazabilidad</h3>
+            <p class="text-sm text-neutral-300">Del campo al pallet con auditoría y eventos GS1.</p>
+            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">etiquetado</li>
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">cumplimiento</li>
+            </ul>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+            <div class="flex items-center justify-between">
+              <!-- Frío -->
+              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M4 6l16 12M20 6L4 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Logística fría</span>
+            </div>
+            <h3 class="mt-4 font-semibold">Cadena de frío monitorizada</h3>
+            <p class="text-sm text-neutral-300">Alarmas de temperatura y rutas con evidencia.</p>
+            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">rastreadores</li>
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">reporting</li>
+            </ul>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+            <div class="flex items-center justify-between">
+              <!-- Datos -->
+              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4V8H4v12zm6 0h4V4h-4v16zm6 0h4v-9h-4v9z" fill="currentColor"/></svg>
+              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Analítica</span>
+            </div>
+            <h3 class="mt-4 font-semibold">Cuadros de mando operativos</h3>
+            <p class="text-sm text-neutral-300">KPIs de rendimiento y costes por parcela/cultivo.</p>
+            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">BI</li>
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">alertas</li>
+            </ul>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+            <div class="flex items-center justify-between">
+              <!-- Asistentes -->
+              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm-9 9a9 9 0 1118 0H3z" fill="currentColor"/></svg>
+              <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Asistentes</span>
+            </div>
+            <h3 class="mt-4 font-semibold">Agentes para campo y almacén</h3>
+            <p class="text-sm text-neutral-300">Flujos guiados: incidencias, partes y checklist.</p>
+            <ul class="mt-3 flex flex-wrap gap-2 text-xs">
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">LLM</li>
+              <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">operaciones</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre ProtoSeed -->
+    <section aria-labelledby="sobre" class="py-12 sm:py-16 border-t border-neutral-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 id="sobre" class="text-2xl sm:text-3xl font-bold">Sobre ProtoSeed</h2>
+        <p class="mt-3 text-neutral-300">Somos un equipo ágil enfocado en etapas tempranas. Convertimos ideas en prototipos funcionales que validan valor y viabilidad técnica. Trabajamos con ciclos cortos, métricas desde el día uno y documentación clara para facilitar la transferencia al equipo del cliente. Entregamos código, pruebas, tableros de seguimiento y un plan de siguientes pasos para escalar con seguridad.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section aria-labelledby="faq" class="py-12 sm:py-16 border-t border-neutral-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 id="faq" class="text-2xl sm:text-3xl font-bold">FAQ</h2>
+        <dl class="mt-6 space-y-6">
+          <div>
+            <dt class="font-semibold">¿Cuáles son los plazos típicos?</dt>
+            <dd class="text-neutral-300">Los MVP/PoC se planifican en sprints cortos. Acordamos un alcance mínimo valioso y fechas de demo para iterar con evidencia.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">¿Qué entregables recibo?</dt>
+            <dd class="text-neutral-300">Código en repositorio, documentación de arquitectura/decisiones, guía de despliegue, checklist de pruebas y tablero de métricas.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">¿De quién es la propiedad intelectual?</dt>
+            <dd class="text-neutral-300">La PI es del cliente. ProtoSeed realiza la cesión completa del trabajo y sus artefactos.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">¿Qué tecnologías utilizáis?</dt>
+            <dd class="text-neutral-300">Stack pragmático y orientado a objetivos: web/backend, datos, IoT, visión y asistentes con IA cuando aportan ROI, siempre con buenas prácticas de seguridad.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section id="contacto" class="py-12 sm:py-16 border-t border-neutral-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold">¿Listo para plantar tu idea?</h2>
+        <p class="mt-3 text-neutral-300">Cuéntanos el problema, la oportunidad y el éxito esperado. Diseñamos el prototipo juntos.</p>
+        <a
+          href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
+          class="focus-ring inline-flex items-center gap-2 mt-6 px-6 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 transition-all duration-200"
+          aria-label="Abrir correo para iniciar prototipado">
+          Prototipa tu idea ahora
+          <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <p class="font-semibold"><span class="text-emerald-300">Proto</span><span class="text-emerald-500">Seed</span></p>
+        <p class="text-sm text-neutral-400 mt-1">“Nosotros plantamos el código, tú cosechas el éxito.”</p>
+      </div>
+      <div class="text-sm">
+        <a class="focus-ring hover:underline" href="mailto:info@proto-seed.com">info@proto-seed.com</a>
+        <span class="mx-2 text-neutral-600">•</span>
+        <a class="focus-ring hover:underline" href="https://github.com/protoseed/landing" target="_blank" rel="noopener">concepto inicial en GitHub</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

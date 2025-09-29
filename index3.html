@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO y Metadatos -->
+    <title>ProtoSeed: Prototipado Ágil para Agrotech en Fruit Attraction</title>
+    <meta name="description" content="En ProtoSeed transformamos ideas agrotech en prototipos funcionales (MVP/PoC) en tiempo récord. Descubre nuestro proceso en Fruit Attraction.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://protoseed.example.com/">
+    <meta property="og:title" content="ProtoSeed: Prototipado Ágil para Agrotech en Fruit Attraction">
+    <meta property="og:description" content="De la idea a la germinación en tiempo récord. Creamos MVPs y PoCs para el sector agrotech.">
+    <meta property="og:image" content="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3e%3crect width='1200' height='630' fill='%23f0fdf4'/%3e%3ctext x='50%25' y='50%25' font-family='sans-serif' font-size='80' fill='%23166534' text-anchor='middle' dominant-baseline='middle'%3eProtoSeed🌱%3c/text%3e%3c/svg%3e">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://protoseed.example.com/">
+    <meta property="twitter:title" content="ProtoSeed: Prototipado Ágil para Agrotech en Fruit Attraction">
+    <meta property="twitter:description" content="De la idea a la germinación en tiempo récord. Creamos MVPs y PoCs para el sector agrotech.">
+    <meta property="twitter:image" content="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3e%3crect width='1200' height='630' fill='%23f0fdf4'/%3e%3ctext x='50%25' y='50%25' font-family='sans-serif' font-size='80' fill='%23166534' text-anchor='middle' dominant-baseline='middle'%3eProtoSeed🌱%3c/text%3e%3c/svg%3e">
+    
+    <!-- TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Estilos y Animaciones inline -->
+    <style>
+        :root {
+            --accent-color: #22c55e; /* Green 500 */
+        }
+        .cta-button {
+            background-color: var(--accent-color);
+        }
+        .cta-button:hover {
+            filter: brightness(1.1);
+        }
+        .text-accent {
+            color: var(--accent-color);
+        }
+        /* Animación "Crecer" */
+        @keyframes grow {
+            0% {
+                transform: scale(0.95) rotate(-5deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        .animate-grow {
+            animation: grow 2s ease-in-out infinite alternate;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+
+    <!-- ========= HEADER ========= -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-900">ProtoSeed<span class="text-accent">.</span></a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#proceso" class="text-gray-600 hover:text-accent transition-colors duration-300">Proceso</a>
+                <a href="#showcase" class="text-gray-600 hover:text-accent transition-colors duration-300">Fruit Attraction</a>
+                <a href="#contacto" class="text-gray-600 hover:text-accent transition-colors duration-300">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ========= HERO SECTION ========= -->
+        <section id="hero" class="py-20 md:py-32 bg-green-50">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative w-24 h-24 mx-auto mb-6">
+                        <!-- SVG Semilla -> Brote -->
+                        <svg class="absolute w-full h-full text-green-300 animate-grow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor" opacity="0.2"/>
+                            <path d="M12 10.5c-1.39 0-2.7.56-3.67 1.53-.98.98-1.53 2.28-1.53 3.67h2c0-1.07.42-2.07 1.17-2.83S10.93 12.5 12 12.5v-2zm-1.17 6.33c-.75-.76-1.17-1.76-1.17-2.83H7.8c0 1.39.56 2.7 1.53 3.67.98.98 2.28 1.53 3.67 1.53v-2c-1.07 0-2.07-.42-2.83-1.17zM16.14 7.86c-.97-.97-2.28-1.53-3.64-1.53v2c1.07 0 2.07.42 2.83 1.17.75.75 1.17 1.76 1.17 2.83h2c0-1.39-.56-2.7-1.53-3.67z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+                        Nosotros plantamos el código, <br class="hidden md:block">
+                        <span class="text-accent">tú cosechas el éxito.</span>
+                    </h1>
+                    <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+                        De la idea a la germinación en tiempo récord.
+                    </p>
+                    <a href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed" class="cta-button mt-8 inline-block text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-green-300">
+                        Prototipa tu idea ahora
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= SECCIÓN FRUIT ATTRACTION ========= -->
+        <section id="fruit-attraction" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-gray-900">Nuestra Cosecha de Innovación en Fruit Attraction</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                    Fruit Attraction (IFEMA MADRID) es el epicentro mundial de la innovación para el sector de frutas y hortalizas. Para ProtoSeed, es el terreno perfecto donde:
+                </p>
+                <div class="mt-10 grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="font-semibold text-lg text-gray-800">Conectamos con la Cadena de Valor</h3>
+                        <p class="mt-2 text-gray-600 text-sm">Escuchamos las necesidades reales, desde el productor hasta el distribuidor, para validar ideas con impacto directo.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="font-semibold text-lg text-gray-800">Presentamos la Innovación Ágil</h3>
+                        <p class="mt-2 text-gray-600 text-sm">Demostramos cómo el prototipado rápido puede acelerar la adopción de nuevas tecnologías en el sector agrotech.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="font-semibold text-lg text-gray-800">Catalizamos la Colaboración</h3>
+                        <p class="mt-2 text-gray-600 text-sm">Fomentamos alianzas para convertir retos del sector en soluciones digitales funcionales y escalables.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= PROCESO EN 4 PASOS ========= -->
+        <section id="proceso" class="py-20 bg-green-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900">De la Semilla al Brote: Nuestro Proceso</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-600">En ProtoSeed, somos los agricultores de las ideas en el mundo digital. Transformamos tu visión en un producto tangible con un método claro y eficiente, enfocado en obtener resultados rápidos y funcionales. Nuestra metodología ágil asegura que cada fase, desde la evaluación inicial hasta la entrega del prototipo, esté alineada con tus objetivos de negocio, permitiéndote validar tu concepto en el mercado con una inversión mínima de tiempo y recursos. Nos encargamos de la arquitectura, el código y la documentación para que tú solo te preocupes de hacer crecer tu proyecto. Te entregamos un brote digital: un MVP o PoC robusto, listo para ser presentado a inversores o para iniciar su escalado.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Paso 1 -->
+                    <div class="text-center p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-green-100 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m5 4v4m-2-2h4M5 3a2 2 0 00-2 2v1m16-3a2 2 0 012 2v1M5 21a2 2 0 01-2-2v-1m16 3a2 2 0 002-2v-1"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">1. Seleccionamos la Semilla</h3>
+                        <p class="text-gray-600">Evaluamos la viabilidad y el potencial de tu idea para asegurar que tiene el ADN correcto para germinar.</p>
+                    </div>
+                    <!-- Paso 2 -->
+                    <div class="text-center p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-green-100 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">2. Preparamos el Terreno</h3>
+                        <p class="text-gray-600">Definimos la arquitectura UX/UI y la estructura técnica para crear un entorno fértil para el desarrollo.</p>
+                    </div>
+                    <!-- Paso 3 -->
+                    <div class="text-center p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-green-100 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">3. Plantamos y Regamos</h3>
+                        <p class="text-gray-600">Codificamos el MVP/PoC con ciclos de desarrollo cortos y feedback constante para que crezca fuerte y sano.</p>
+                    </div>
+                    <!-- Paso 4 -->
+                    <div class="text-center p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-green-100 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M7 17v4m-2-2h4m5.5-11.5L14 11.5m-1.5 1.5L11 11.5m6.5 2.5L16 11.5M14 16l-1.5-1.5M16 16l1.5-1.5M18 13l1.5 1.5M14 8l-1.5 1.5M16 8l1.5 1.5M18 11l1.5-1.5"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">4. Entregamos el Brote</h3>
+                        <p class="text-gray-600">Recibes un producto funcional, documentado y listo para la siguiente fase de crecimiento o inversión.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= SHOWCASE "FRUIT ATTRACTION" ========= -->
+        <section id="showcase" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900">Ideas Prototipadas para el Sector</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-gray-600">
+                        Algunos ejemplos de conceptos que transformamos en prototipos funcionales, presentados en Fruit Attraction.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Tarjeta 1 -->
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <svg class="w-10 h-10 text-green-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                                <h3 class="text-xl font-semibold">Trazabilidad Blockchain en Cítricos</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">Garantiza el origen y la calidad del producto desde el campo hasta la mesa.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Trazabilidad</span>
+                                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Blockchain</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta 2 -->
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <svg class="w-10 h-10 text-green-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <h3 class="text-xl font-semibold">Sensorización IoT para Logística Fría</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">Monitoriza en tiempo real la temperatura y humedad para reducir mermas.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">IoT</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Logística Fría</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta 3 -->
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <svg class="w-10 h-10 text-green-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                <h3 class="text-xl font-semibold">Control de Madurez por Visión Artificial</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">Clasifica fruta automáticamente en la línea de empaquetado por su punto óptimo.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Visión Artificial</span>
+                                <span class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Automatización</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= SOBRE PROTOSEED ========= -->
+        <section id="about" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6 max-w-3xl text-center">
+                <h2 class="text-3xl font-bold text-gray-900">Especialistas en la Fase Inicial</h2>
+                <p class="mt-4 text-gray-600">
+                    En ProtoSeed nos centramos exclusivamente en las etapas iniciales (early-stage) del desarrollo de producto. Nuestra especialidad es la velocidad: convertimos una hipótesis en un prototipo funcional (MVP/PoC) en semanas, no meses. Este enfoque permite a nuestros clientes validar sus ideas con usuarios reales y asegurar inversión con un producto tangible. Entregamos el código fuente completo y la documentación, facilitando una transferencia limpia a tu equipo interno o a un proveedor de desarrollo para escalar el proyecto sin dependencias.
+                </p>
+            </div>
+        </section>
+
+        <!-- ========= FAQ ========= -->
+        <section id="faq" class="py-20">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Preguntas Frecuentes</h2>
+                <div class="space-y-4">
+                    <details class="group bg-white p-6 rounded-lg border border-gray-200">
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer text-gray-800">
+                            ¿Cuál es el plazo típico para un prototipo?
+                            <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <p class="text-gray-600 mt-4">Un MVP o PoC típico se desarrolla en un plazo de 4 a 8 semanas, dependiendo de la complejidad y el alcance de las funcionalidades clave a validar.</p>
+                    </details>
+                    <details class="group bg-white p-6 rounded-lg border border-gray-200">
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer text-gray-800">
+                            ¿Qué entregáis al finalizar el proyecto?
+                            <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <p class="text-gray-600 mt-4">Entregamos el código fuente completo alojado en un repositorio privado, la documentación técnica y de usuario, y el despliegue en un entorno de pruebas funcional.</p>
+                    </details>
+                    <details class="group bg-white p-6 rounded-lg border border-gray-200">
+                        <summary class="flex justify-between items-center font-semibold cursor-pointer text-gray-800">
+                            ¿Quién posee la propiedad intelectual?
+                            <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        <p class="text-gray-600 mt-4">El cliente. Toda la propiedad intelectual del software desarrollado, incluyendo el código y los diseños, es 100% tuya desde el primer día.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= CTA FINAL ========= -->
+        <section id="contacto" class="py-20 bg-green-600 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold">¿Tienes una idea que necesita germinar?</h2>
+                <p class="mt-4 max-w-xl mx-auto">
+                    No dejes que se quede en el papel. Hablemos sobre cómo podemos construir juntos tu prototipo.
+                </p>
+                <a href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed" class="mt-8 inline-block bg-white text-green-600 font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-green-200">
+                    Contacta con nosotros
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========= FOOTER ========= -->
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="font-bold text-lg">ProtoSeed</p>
+            <a href="mailto:info@proto-seed.com" class="block mt-2 text-accent hover:text-white transition-colors duration-300">info@proto-seed.com</a>
+            <div class="mt-6 text-sm text-gray-500">
+                <p>&copy; 2025 ProtoSeed. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
