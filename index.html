@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="ProtoSeed — Prototipado ágil en agrotech" />
   <meta property="og:description" content="De la idea a la germinación en tiempo récord. Presencia en Fruit Attraction (IFEMA)." />
-  <!-- Ligera imagen OG embebida como SVG data URI -->
+  <!-- Imagen OG ligera embebida como SVG data URI -->
   <meta property="og:image" content='data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="%23111"/><g transform="translate(100,120)"><text x="0" y="0" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="64" fill="%23A7F3D0">ProtoSeed</text><text x="0" y="84" font-family="system-ui,-apple-system,Segoe UI,Roboto" font-size="40" fill="%23FFFFFF">Nosotros plantamos el código, tú cosechas el éxito.</text><g transform="translate(0,140)"><circle cx="60" cy="60" r="56" fill="%2316A34A"/><path d="M60 35c14 9 22 22 22 34 0 12-8 23-22 28-14-5-22-16-22-28 0-12 8-25 22-34z" fill="%23fff"/></g></g></svg>' />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -21,22 +21,54 @@
   <!-- TailwindCSS vía CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Variables y estilos mínimos (sin librerías externas) -->
+  <!-- Estilos mínimos -->
   <style>
-    :root { --accent: #16a34a; } /* Verde acento (ajustable) */
-    /* Utilidad de foco visible accesible */
+    :root { --accent: #16a34a; } /* Verde acento */
+    /* Foco visible accesible */
     .focus-ring:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-    /* Animación sutil de “crecer” para el brote del hero */
+    /* Animación sutil (si no se prefiere reducir movimiento) */
     @keyframes grow {
-      0% { transform: scale(0.92) translateY(4px); opacity: 0.85; }
-      50% { transform: scale(1.02) translateY(0); opacity: 1; }
+      0% { transform: scale(0.98) translateY(2px); opacity: .92; }
+      60% { transform: scale(1.02) translateY(0); opacity: 1; }
       100% { transform: scale(1) translateY(0); opacity: 1; }
     }
-    .sprout-animate { animation: grow 2.2s ease-out 1.2s both; }
-    /* Preferencias de movimiento del usuario */
+    .sprout-animate { animation: grow 1.6s ease-out .4s both; }
     @media (prefers-reduced-motion: reduce) {
       .sprout-animate, .transition-all, .duration-200 { animation: none !important; transition: none !important; }
     }
+
+    /* Hero con gradientes sutiles */
+    .hero-bg:before{
+      content:"";
+      position:absolute; inset:-10%;
+      background:
+        radial-gradient(60rem 40rem at 50% -10%, rgba(16,185,129,.15), transparent 50%),
+        radial-gradient(30rem 20rem at 10% 20%, rgba(34,197,94,.10), transparent 60%),
+        radial-gradient(30rem 20rem at 90% 30%, rgba(2,132,199,.08), transparent 60%);
+      pointer-events:none;
+      filter: blur(40px);
+    }
+
+    /* Profundidad elegante para header y cards */
+    .header-blur { backdrop-filter: saturate(140%) blur(10px); background: rgba(10,10,10,.6); }
+    .card { box-shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 10px 30px rgba(0,0,0,.35); }
+
+    /* Skeleton shimmer para el iframe */
+    .skeleton {
+      position: relative; overflow: hidden;
+      background: linear-gradient(0deg, #0a0a0a, #0a0a0a);
+      border-radius: .75rem; border: 1px solid #262626; min-height: 240px;
+    }
+    .skeleton:before{
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+      transform: translateX(-100%); animation: shimmer 1.4s infinite;
+    }
+    @keyframes shimmer { 100% { transform: translateX(100%); } }
+
+    /* CTA fijo en móvil */
+    .dock-cta { position: fixed; left: 0; right: 0; bottom: .75rem; z-index: 40; }
+    @media (min-width: 640px){ .dock-cta { display:none; } }
   </style>
 </head>
 
@@ -45,169 +77,180 @@
   <a href="#contenido" class="sr-only focus:not-sr-only focus-ring focus:bg-neutral-800 px-4 py-2 absolute left-4 top-4 rounded-lg">Saltar al contenido</a>
 
   <!-- Header / Navbar -->
-  <header class="border-b border-neutral-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-      <!-- Logo tipográfico -->
-      <a href="#" class="text-xl sm:text-2xl font-bold tracking-tight hover:opacity-90 focus-ring" aria-label="Inicio ProtoSeed">
+  <header class="sticky top-0 z-30 border-b border-neutral-800 header-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+      <a href="#" class="text-lg sm:text-xl font-bold tracking-tight hover:opacity-90 focus-ring" aria-label="Inicio ProtoSeed">
         <span class="text-emerald-300">Proto</span><span class="text-emerald-500">Seed</span>
       </a>
-      <!-- Navegación -->
-      <nav aria-label="Principal">
-        <ul class="flex items-center gap-4 sm:gap-6 text-sm">
+
+      <nav aria-label="Principal" class="flex items-center gap-6">
+        <ul class="hidden sm:flex items-center gap-6 text-sm">
           <li><a class="focus-ring hover:underline" href="#proceso">Proceso</a></li>
           <li><a class="focus-ring hover:underline" href="#fruit">Fruit Attraction</a></li>
-          <li><a class="focus-ring hover:underline" href="#contacto">Contacto</a></li>
         </ul>
+
+        <a href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
+           class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-lg font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 focus-ring text-sm">
+          Contacto
+          <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+
+        <!-- Menú móvil sin JS (details/summary) -->
+        <details class="sm:hidden">
+          <summary class="list-none focus-ring px-2 py-1 rounded-lg border border-neutral-800">
+            <span class="sr-only">Abrir menú</span>
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </summary>
+          <ul class="absolute right-4 mt-2 w-48 rounded-xl border border-neutral-800 bg-neutral-900 p-2 text-sm shadow-xl">
+            <li><a class="block px-3 py-2 rounded-lg hover:bg-neutral-800 focus-ring" href="#proceso">Proceso</a></li>
+            <li><a class="block px-3 py-2 rounded-lg hover:bg-neutral-800 focus-ring" href="#fruit">Fruit Attraction</a></li>
+            <li><a class="block px-3 py-2 rounded-lg hover:bg-neutral-800 focus-ring" href="#contacto">Contacto</a></li>
+          </ul>
+        </details>
       </nav>
     </div>
   </header>
 
   <main id="contenido">
-    <!-- HERO: claim + subclaim + CTA + SVG semilla→brote -->
-    <!-- Bloque clave: Héroe -->
-<section class="relative overflow-hidden min-h-[40vh] flex items-center">
-  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-    <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight">
-      Nosotros <span class="text-emerald-400">plantamos el código</span>, tú <span class="text-emerald-300">cosechas el éxito</span>.
-    </h1>
-    <p class="mt-4 text-lg text-neutral-300">De la idea a la germinación en tiempo récord. Prototipado ágil (MVP/PoC) especializado en agrotech.</p>
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
-              class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 transition-all duration-200"
-              aria-label="Prototipa tu idea ahora, abre tu cliente de correo">
-              Prototipa tu idea ahora
-              <!-- Flecha -->
-              <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <a href="#fruit" class="focus-ring inline-flex items-center px-5 py-3 rounded-xl font-semibold border border-neutral-700 hover:bg-neutral-900 transition-all duration-200">Ver proyectos de Fruit Attraction</a>
-          </div>
+    <!-- HERO -->
+    <section class="relative overflow-hidden flex items-center hero-bg">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center py-16 sm:py-24 sprout-animate">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-700/40 bg-emerald-600/10 text-emerald-300 text-xs font-medium">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          Presencia en Fruit Attraction · IFEMA Madrid
         </div>
 
+        <h1 class="mt-4 text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight">
+          Plantamos el <span class="text-emerald-400">código</span>, tú cosechas el <span class="text-emerald-300">éxito</span>.
+        </h1>
+
+        <p class="mt-5 text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto">
+          De la idea a la germinación en tiempo récord. Prototipado ágil (MVP/PoC) especializado en agrotech.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
+             class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 transition-all duration-200">
+            Prototipa tu idea ahora
+            <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+          <a href="#fruit" class="focus-ring inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold border border-neutral-700 hover:bg-neutral-900 transition-all duration-200">
+            Ver nuestro dashboard en vivo
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3l-9 9M5 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
     </section>
 
-    <!-- Proceso en 4 pasos (con iconos SVG) -->
+    <!-- CTA dock (móvil) -->
+    <div class="dock-cta px-4">
+      <a href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
+         class="block w-full text-center px-5 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 shadow-lg focus-ring">
+        Prototipa tu idea ahora
+      </a>
+    </div>
+
+    <!-- Proceso -->
     <section id="proceso" aria-labelledby="proceso-titulo" class="py-12 sm:py-16 border-t border-neutral-800">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 id="proceso-titulo" class="text-2xl sm:text-3xl font-bold">Proceso: de semilla a brote</h2>
-        <!-- Resumen (120–160 palabras, manteniendo los 4 pasos) -->
-        <p class="mt-3 text-neutral-300">
-          En ProtoSeed somos los agricultores de las ideas en el mundo digital. Al igual que en los invernaderos de nuestra tierra, donde una pequeña semilla se convierte en fruto, trabajamos con la “genética” de tu idea para acelerar su germinación. <em>Proto</em> es el primer fruto tangible que demuestra viabilidad; <em>Seed</em> es el potencial puro que traes. Nuestro enfoque convierte hipótesis en aprendizaje validado con un MVP o PoC funcional, documentado y listo para evolucionar. En cuatro pasos claros: 1) seleccionamos la <strong>Semilla</strong> (evaluamos impacto y encaje), 2) preparamos el <strong>Terreno</strong> (arquitectura UX/tech y plan de sprints), 3) plantamos y <strong>Regamos</strong> (codificamos, instrumentamos métricas y pruebas), y 4) entregamos el <strong>Brote</strong> (producto funcional, traspaso de conocimiento y próximos hitos). Así reducimos riesgo, tiempo y coste, manteniendo la propiedad intelectual en tus manos y facilitando la transferencia para escalar.
+        <p class="mt-3 text-neutral-300 max-w-3xl">
+          Convertimos hipótesis en aprendizaje validado con un MVP/PoC funcional y medible. Cuatro pasos claros para reducir riesgo, tiempo y coste.
         </p>
 
-        <!-- Steps -->
-        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Paso 1 -->
-          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200 card">
             <div class="flex items-center gap-3">
-              <!-- Icono semilla -->
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4c4 2.5 6 6.3 6 9 0 2.7-2 5.1-6 6.4C8 18.1 6 15.7 6 13c0-2.7 2-6.5 6-9z" fill="currentColor"/></svg>
-              <h3 class="font-semibold">1. Seleccionamos la Semilla</h3>
+              <h3 class="font-semibold">1. Semilla</h3>
             </div>
-            <p class="mt-3 text-sm text-neutral-300">Evaluación de oportunidad, riesgos y métricas de éxito. Alcance y criterios de validación.</p>
+            <p class="mt-3 text-sm text-neutral-300">Evaluación de oportunidad, riesgos y métricas de éxito.</p>
           </article>
-          <!-- Paso 2 -->
-          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+
+          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200 card">
             <div class="flex items-center gap-3">
-              <!-- Icono terreno -->
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17h18v2H3zM4 13h16l-3-4-5 3-3-2-5 3z" fill="currentColor"/></svg>
-              <h3 class="font-semibold">2. Preparamos el Terreno</h3>
+              <h3 class="font-semibold">2. Terreno</h3>
             </div>
-            <p class="mt-3 text-sm text-neutral-300">Arquitectura UX/tech, backlog mínimo, plan de datos y seguridad. Roadmap de sprints.</p>
+            <p class="mt-3 text-sm text-neutral-300">Arquitectura UX/tech, backlog mínimo y plan de sprints.</p>
           </article>
-          <!-- Paso 3 -->
-          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+
+          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200 card">
             <div class="flex items-center gap-3">
-              <!-- Icono riego -->
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l4 4-7 7-2 1 1-2 7-7zM5 19a3 3 0 106 0c0 1.657-3 3-3 3s-3-1.343-3-3z" fill="currentColor"/></svg>
-              <h3 class="font-semibold">3. Plantamos y Regamos</h3>
+              <h3 class="font-semibold">3. Riego</h3>
             </div>
-            <p class="mt-3 text-sm text-neutral-300">Codificación del MVP/PoC con métricas, pruebas y demo continua. Iteración rápida.</p>
+            <p class="mt-3 text-sm text-neutral-300">Codificamos el MVP/PoC con métricas y pruebas. Iteración rápida.</p>
           </article>
-          <!-- Paso 4 -->
-          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
+
+          <article class="rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200 card">
             <div class="flex items-center gap-3">
-              <!-- Icono brote -->
               <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c0-6 4-10 4-10s4 4 4 10h-8zM12 20c0-6-4-10-4-10S4 14 4 20h8z" fill="currentColor"/></svg>
-              <h3 class="font-semibold">4. Entregamos el Brote</h3>
+              <h3 class="font-semibold">4. Brote</h3>
             </div>
-            <p class="mt-3 text-sm text-neutral-300">Producto funcional y documentado, handover y próximos pasos para escalar.</p>
+            <p class="mt-3 text-sm text-neutral-300">Producto funcional, documentación y handover para escalar.</p>
           </article>
         </div>
       </div>
     </section>
 
-<!-- Showcase “Fruit Attraction” (único proyecto con embed) -->
-<section id="fruit" aria-labelledby="showcase-titulo" class="py-12 sm:py-16 border-t border-neutral-800">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 id="showcase-titulo" class="text-2xl sm:text-3xl font-bold">Showcase “Fruit Attraction”</h2>
-    <div class="mt-8 grid lg:grid-cols-1 gap-6">
-      <!-- Card: Dashboard de análisis de precios (con embed) -->
-      <article class="group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200">
-        <div class="flex items-center justify-between gap-3">
-          <!-- Icono dashboard -->
-          <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 20h4V8H4v12zm6 0h4V4h-4v16zm6 0h4v-9h-4v9z" fill="currentColor"/>
-          </svg>
-          <span class="text-xs px-2 py-1 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-700/40">Analítica</span>
+    <!-- Showcase “Fruit Attraction” (único proyecto con embed) -->
+    <section id="fruit" aria-labelledby="showcase-titulo" class="py-12 sm:py-16 border-t border-neutral-800">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between">
+          <h2 id="showcase-titulo" class="text-2xl sm:text-3xl font-bold">Showcase “Fruit Attraction”</h2>
+          <span class="hidden sm:inline-flex items-center gap-2 text-xs px-2 py-1 rounded-lg bg-emerald-600/15 text-emerald-300 border border-emerald-700/40">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> En vivo
+          </span>
         </div>
 
-        <h3 class="mt-4 font-semibold">Análisis de Precios Agrícolas</h3>
-        <p class="text-sm text-neutral-300">
-          Análisis interactivo para productores agrícolas para maximizar el valor de mercado. Explora tendencias,
-          compara cultivos y toma decisiones con datos.
-        </p>
+        <article class="mt-6 group rounded-2xl border border-neutral-800 p-6 bg-neutral-900/40 hover:bg-neutral-900 transition-all duration-200 card">
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <svg class="w-8 h-8 text-emerald-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4V8H4v12zm6 0h4V4h-4v16zm6 0h4v-9h-4v9z" fill="currentColor"/></svg>
+              <h3 class="font-semibold">Análisis de Precios Agrícolas</h3>
+            </div>
+            <a href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener"
+               class="focus-ring inline-flex items-center gap-2 px-3 py-2 rounded-lg font-medium border border-neutral-700 hover:bg-neutral-900 text-xs">
+              Abrir en ventana nueva
+              <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3l-9 9M5 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </a>
+          </div>
 
-        <!-- Badges -->
-        <ul class="mt-3 flex flex-wrap gap-2 text-xs">
-          <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">precios</li>
-          <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">BI</li>
-          <li class="px-2 py-1 rounded bg-neutral-800/80 border border-neutral-700">market insights</li>
-        </ul>
+          <p class="mt-2 text-sm text-neutral-300">
+            Análisis interactivo para productores agrícolas: explora tendencias, compara cultivos y decide con datos.
+          </p>
 
-        <!-- Acciones -->
-        <div class="mt-4 flex flex-wrap items-center gap-3">
-          <a href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener"
-             class="focus-ring inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium border border-neutral-700 hover:bg-neutral-900">
-            Abrir en ventana nueva
-            <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
-              <path d="M14 3h7v7M21 3l-9 9M5 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
+          <!-- Skeleton + iframe (16:9) -->
+          <div class="mt-5 relative w-full" style="aspect-ratio:16/9;">
+            <div id="panel-skeleton" class="skeleton w-full h-full rounded-xl"></div>
+            <iframe
+              title="Análisis de Precios Agrícolas — ProtoSeed"
+              src="https://agro-agents-demo.onrender.com/es"
+              class="absolute inset-0 w-full h-full rounded-xl border border-neutral-800"
+              loading="lazy" referrerpolicy="no-referrer"
+              sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+              onload="document.getElementById('panel-skeleton')?.remove();">
+            </iframe>
+          </div>
 
-        <!-- Embed responsive del dashboard -->
-        <div class="mt-6 relative w-full" style="padding-top:56.25%;">
-          <iframe
-            title="Análisis de Precios Agrícolas — ProtoSeed"
-            src="https://agro-agents-demo.onrender.com/es"
-            class="absolute inset-0 w-full h-full rounded-xl border border-neutral-800"
-            loading="lazy"
-            referrerpolicy="no-referrer"
-            sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
-          ></iframe>
-        </div>
-
-        <!-- Fallback accesible si el embed no carga -->
-        <p class="mt-3 text-xs text-neutral-500">
-          Si no ves el panel embebido, accede directamente:
-          <a class="focus-ring underline" href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener">
-            agro-agents-demo.onrender.com/es
-          </a>
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
-
+          <p class="mt-3 text-xs text-neutral-500">
+            Si no ves el panel, accede directamente:
+            <a class="focus-ring underline" href="https://agro-agents-demo.onrender.com/es" target="_blank" rel="noopener">agro-agents-demo.onrender.com/es</a>
+          </p>
+        </article>
+      </div>
+    </section>
 
     <!-- Sobre ProtoSeed -->
     <section aria-labelledby="sobre" class="py-12 sm:py-16 border-t border-neutral-800">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 id="sobre" class="text-2xl sm:text-3xl font-bold">Sobre ProtoSeed</h2>
-        <p class="mt-3 text-neutral-300">Somos un equipo ágil enfocado en etapas tempranas. Convertimos ideas en prototipos funcionales que validan valor y viabilidad técnica. Trabajamos con ciclos cortos, métricas desde el día uno y documentación clara para facilitar la transferencia al equipo del cliente. Entregamos código, pruebas, tableros de seguimiento y un plan de siguientes pasos para escalar con seguridad.</p>
+        <p class="mt-3 text-neutral-300">
+          Somos un equipo ágil enfocado en etapas tempranas. Convertimos ideas en prototipos funcionales que validan valor y viabilidad técnica.
+          Trabajamos con ciclos cortos, métricas desde el día uno y documentación clara para facilitar la transferencia al equipo del cliente.
+          Entregamos código, pruebas, tableros de seguimiento y un plan de siguientes pasos para escalar con seguridad.
+        </p>
       </div>
     </section>
 
@@ -237,19 +280,21 @@
     </section>
 
     <!-- CTA Final -->
-    <section id="contacto" class="py-12 sm:py-16 border-t border-neutral-800">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section id="contacto" class="py-12 sm:py-16 border-t border-neutral-800 text-center">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-2xl sm:text-3xl font-bold">¿Listo para plantar tu idea?</h2>
         <p class="mt-3 text-neutral-300">Cuéntanos el problema, la oportunidad y el éxito esperado. Diseñamos el prototipo juntos.</p>
-        <a
-          href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
-          class="focus-ring inline-flex items-center gap-2 mt-6 px-6 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 transition-all duration-200"
-          aria-label="Abrir correo para iniciar prototipado">
-          Prototipa tu idea ahora
-          <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+        <div class="mt-6 flex justify-center">
+          <a
+            href="mailto:info@proto-seed.com?subject=Quiero%20prototipar%20mi%20idea%20%E2%80%93%20ProtoSeed"
+            class="focus-ring inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700"
+            aria-label="Abrir correo para iniciar prototipado">
+            Prototipa tu idea ahora
+            <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   </main>
@@ -268,3 +313,4 @@
   </footer>
 </body>
 </html>
+
