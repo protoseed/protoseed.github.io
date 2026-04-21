@@ -815,7 +815,7 @@
                                 href="#"
                                 target="_blank"
                                 rel="noopener"
-                                >agro-agents-demo.onrender.com</a
+                                >agro-agents-dashboard.vercel.app</a
                             >
                         </p>
                     </article>
@@ -823,6 +823,21 @@
 
                 <!-- Language-aware dashboard URLs -->
                 <script>
+                    const DASHBOARD_BASE_URL =
+                        "https://agro-agents-dashboard.vercel.app";
+
+                    function getDashboardUrl(lang) {
+                        return lang === "en"
+                            ? `${DASHBOARD_BASE_URL}/en`
+                            : `${DASHBOARD_BASE_URL}/`;
+                    }
+
+                    function getDashboardLabel(lang) {
+                        return lang === "en"
+                            ? "agro-agents-dashboard.vercel.app/en"
+                            : "agro-agents-dashboard.vercel.app/";
+                    }
+
                     (function () {
                         // Decide language: ?lang= takes priority, then localStorage, then <html lang>, default 'es'
                         var params = new URLSearchParams(location.search);
@@ -838,10 +853,7 @@
                         var lang = (ql || stored || docLang).startsWith("en")
                             ? "en"
                             : "es";
-
-                        var base = "https://agro-agents-demo.onrender.com/";
-                        var path = lang === "en" ? "en" : "es";
-                        var url = base + path;
+                        var url = getDashboardUrl(lang);
 
                         // Set href/src/texts
                         var link = document.getElementById("dashboardLink");
@@ -852,8 +864,7 @@
                         if (frame) frame.src = url;
                         if (direct) {
                             direct.href = url;
-                            direct.textContent =
-                                "agro-agents-demo.onrender.com/" + path;
+                            direct.textContent = getDashboardLabel(lang);
                         }
 
                         // Optional: update iframe title per language (keeps accessibility tidy)
@@ -1101,7 +1112,7 @@
                     tagline:
                         '"Nosotros plantamos el código, tú cosechas el éxito."',
                     mail_subject: "Quiero prototipar mi idea – ProtoSeed",
-                    dash_path: "es",
+                    dash_path: "",
                     dash_title: "Analíticas de Precios Agrícolas — ProtoSeed",
                 },
                 en: {
@@ -1252,15 +1263,17 @@
                 const frame = document.getElementById("dashboardFrame");
                 const link = document.getElementById("dashboardLink");
                 const direct = document.getElementById("dashboardDirect");
+                const dashUrl = getDashboardUrl(path === "en" ? "en" : "es");
                 if (frame) {
-                    frame.src = `https://agro-agents-demo.onrender.com/${path}`;
+                    frame.src = dashUrl;
                     frame.title = t.dash_title;
                 }
-                if (link)
-                    link.href = `https://agro-agents-demo.onrender.com/${path}`;
+                if (link) link.href = dashUrl;
                 if (direct) {
-                    direct.href = `https://agro-agents-demo.onrender.com/${path}`;
-                    direct.textContent = `agro-agents-demo.onrender.com/${path}`;
+                    direct.href = dashUrl;
+                    direct.textContent = getDashboardLabel(
+                        path === "en" ? "en" : "es",
+                    );
                 }
 
                 // Skip link label attribute for a11y
